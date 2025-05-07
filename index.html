@@ -1,0 +1,1955 @@
+<!DOCTYPE html>
+<!-- Default lang set to 'bn' -->
+<html lang="bn">
+ <head>
+  <meta charset="UTF-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>চিঠি অ্যাপ</title>
+  <!-- Font links -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <!-- Icon and CSS framework links -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet"/>
+  <style>
+   /* ==================== CSS (UI Enhancements v3.9.16 - Improved Ad Script Injection) ==================== */
+        *, *::before, *::after { box-sizing: border-box; }
+        .hidden { display: none !important; }
+
+        body { font-family: 'Poppins', 'Arial', sans-serif; line-height: 1.6; margin: 0; padding: 0 0 70px 0; background-color: #f0eada; color: #333; }
+        /* বাংলা ফন্ট সেটিংস */
+        html[lang="bn"] body, html[lang="bn"] button, html[lang="bn"] input, html[lang="bn"] select, html[lang="bn"] textarea { font-family: 'Hind Siliguri', 'Arial', sans-serif; }
+        html[lang="hi"] body, html[lang="hi"] button, html[lang="hi"] input, html[lang="hi"] select, html[lang="hi"] textarea { font-family: 'Hind', 'Arial', sans-serif; }
+        html[lang="en"] body, html[lang="en"] button, html[lang="en"] input, html[lang="en"] select, html[lang="en"] textarea { font-family: 'Poppins', 'Arial', sans-serif; }
+
+        header { background-color: #8E7CC3; color: #fff; padding: 0.8rem 15px; text-align: center; box-shadow: 0 3px 6px rgba(0,0,0,0.1); position: relative; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid #4a3f78; }
+        header h1 { margin: 0; font-size: 1.6rem; font-weight: 600; flex-grow: 1; text-align: center; margin-right: 90px; /* Adjust if needed */ color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); font-family: inherit; }
+        #user-info { color: #fff; font-size: 0.85rem; text-align: right; font-family: inherit; display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+        #user-info span#user-display-name { font-weight: 500; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; }
+        #user-info span#user-display-name:hover { text-decoration: underline; }
+        #logout-btn { background: #e76e55; color: #fff; padding: 4px 8px; border: none; border-radius: 0; font-size: 0.7rem; cursor: pointer; transition: background-color 0.2s; box-shadow: 2px 2px 0px #888; font-family: inherit; }
+        #logout-btn:hover { background-color: #ce5a44; }
+        #logout-btn:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0px #888; }
+
+        main { max-width: 800px; margin: 20px auto; padding: 0 10px; background-color: transparent; box-shadow: none; }
+        section { margin-bottom: 30px; padding: 0; border: none; background-color: transparent; }
+        section h2 { color: #4a3f78; border-bottom: 2px solid #d3c8b3; padding-bottom: 8px; margin: 0 10px 25px 10px; font-weight: 600; font-family: inherit; display: flex; justify-content: space-between; align-items: center; }
+        #feed-heading-clickable { cursor: pointer; }
+        #feed-heading-clickable:hover { color: #6a5acd; }
+        section h2 .back-btn { font-size: 1rem; color: #8E7CC3; background: none; border: none; cursor: pointer; padding: 5px; }
+        section h2 .back-btn:hover { color: #4a3f78; }
+
+        .letter-item { margin: 10px; perspective: 1000px; }
+        .letter-item-content-wrapper { font-family: 'Dancing Script', cursive; font-size: 1.3rem; line-height: 1.8; color: #443931; background-color: #fffcf0; border: 1px solid #d3c8b3; padding: 25px 30px; border-radius: 3px; box-shadow: 3px 3px 8px rgba(0,0,0,0.15); position: relative; overflow: hidden; cursor: pointer; transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; }
+        .letter-item-content-wrapper:hover { transform: translateY(-5px) rotateX(1deg); box-shadow: 5px 8px 15px rgba(0,0,0,0.2); }
+        .letter-item-content-wrapper::before, .letter-item-content-wrapper::after { content: ''; position: absolute; width: 80px; height: 25px; background-color: rgba(239, 221, 187, 0.6); transform: rotate(-4deg); box-shadow: 1px 1px 2px rgba(0,0,0,0.1); opacity: 0.7; }
+        .letter-item-content-wrapper::before { top: 15px; left: -10px; }
+        .letter-item-content-wrapper::after { bottom: 10px; right: -15px; transform: rotate(3deg); }
+
+        #letter-form textarea { font-family: 'Dancing Script', cursive; font-size: 1.3rem; line-height: 1.9; color: #443931; background-color: #fffcf0; border: 1px solid #d3c8b3; padding: 25px 30px; border-radius: 3px; box-shadow: 3px 3px 8px rgba(0,0,0,0.15); margin: 20px; width: calc(100% - 40px); min-height: 250px; resize: vertical; display: block; cursor: text; }
+
+        .profile-header { padding: 10px 20px; text-align: center; margin-bottom: 20px; background-color: #f5f2e9; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border: 1px solid #dcd0bb; }
+        .profile-name { font-size: 1.3rem; font-weight: 600; margin-bottom: 5px; color: #333; }
+        .profile-email { font-size: 0.9rem; font-weight: 400; margin-bottom: 10px; color: #777; }
+        .follow-stats { display: flex; justify-content: center; gap: 20px; font-size: 0.9rem; color: #555; margin-bottom: 10px; font-family: inherit; }
+        .follow-stats div { transition: color 0.2s; display: inline-flex; align-items: baseline; }
+        .follow-stats span[data-translate-key] { margin-right: 4px; }
+        .follow-stats span:not([data-translate-key]) { font-weight: 600; color: #333; }
+
+        #profile-action-area { margin-top: 10px; min-height: 30px; text-align: center; }
+        #profile-action-area .profile-follow-btn { padding: 6px 15px; font-size: 0.9rem; }
+        .profile-tabs { display: flex; justify-content: center; margin-bottom: 20px; border-bottom: 1px solid #bdae9b; flex-wrap: wrap; }
+        .profile-tab-btn { padding: 10px 15px; background: none; border: none; border-bottom: 3px solid transparent; cursor: pointer; font-size: 0.95rem; font-family: inherit; color: #555; transition: color 0.2s, border-bottom-color 0.2s; margin: 0 5px 5px 5px; }
+        .profile-tab-btn.active { color: #483d8b; border-bottom-color: #6a5acd; font-weight: 600; }
+        .profile-tab-btn:hover { color: #483d8b; }
+        .profile-content { }
+
+        /* Following & Search Results */
+        #following-list, #search-results-list { }
+        #following-list .following-item, #friend-select-list .friend-item, #search-results-list .search-result-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; border-bottom: 1px solid #eee; background-color: #fff; margin: 0 10px 5px 10px; border-radius: 4px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+        #following-list .following-item:last-child, #friend-select-list .friend-item:last-child, #search-results-list .search-result-item:last-child { border-bottom: none; }
+        .following-info, .friend-info, .search-result-info { display: flex; align-items: center; gap: 10px; flex-grow: 1; overflow: hidden; }
+        .following-details, .friend-details, .search-result-details { display: flex; flex-direction: column; flex-grow: 1; min-width: 0; }
+        .following-name, .friend-name, .search-result-name { font-weight: 600; color: #333; font-size: 1rem; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .following-name:hover, .friend-name:hover, .search-result-name:hover { text-decoration: underline; color: #6a5acd; }
+        .following-email, .friend-email, .search-result-email { font-size: 0.8rem; color: #777; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        #following-list .unfollow-btn { font-size: 0.75rem; padding: 3px 8px; border: 1px solid #dc3545; background-color: transparent; color: #dc3545; border-radius: 3px; cursor: pointer; transition: background-color 0.2s, color 0.2s; flex-shrink: 0; font-family: inherit;}
+        #following-list .unfollow-btn:hover:not(:disabled) { background-color: #dc3545; color: white; }
+        #following-list .unfollow-btn:disabled { opacity: 0.6; cursor: wait; border-color: #ccc; color: #ccc; }
+        #friend-select-list .friend-select-checkbox { margin-right: 10px; transform: scale(1.2); cursor: pointer; flex-shrink: 0; }
+        #search-results-list .view-profile-btn { font-size: 0.75rem; padding: 3px 8px; border: 1px solid #6a5acd; background-color: transparent; color: #6a5acd; border-radius: 3px; cursor: pointer; transition: background-color 0.2s, color 0.2s; flex-shrink: 0; font-family: inherit;}
+        #search-results-list .view-profile-btn:hover { background-color: #6a5acd; color: white; }
+
+        /* Add UID Area */
+        #add-uid-area { margin: 0 10px 20px 10px; padding: 15px; background-color: #fff; border-radius: 4px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); border: 1px solid #eee; }
+        #add-uid-area label { display: block; font-weight: 500; margin-bottom: 8px; font-size: 0.9rem; color: #555; }
+        #add-uid-input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 3px; font-size: 0.9rem; margin-bottom: 10px; font-family: inherit; }
+        #add-uid-button { padding: 6px 12px; font-size: 0.85rem; }
+        #add-uid-message { margin-top: 10px; font-size: 0.8rem; text-align: center; min-height: 1.2em; }
+        #add-uid-message.success { color: green; }
+        #add-uid-message.error { color: #dc3545; }
+
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); justify-content: center; align-items: center; }
+        .modal.show { display: flex; }
+        .modal-content { background-color: #fefefe; margin: auto; padding: 20px; border: 1px solid #888; width: 90%; max-width: 500px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); position: relative; max-height: 80vh; display: flex; flex-direction: column; }
+        .modal-header { padding-bottom: 10px; border-bottom: 1px solid #eee; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;}
+        .modal-header h3 { margin: 0; color: #483d8b; font-family: inherit; }
+        .modal-close-btn { color: #aaa; font-size: 28px; font-weight: bold; background: none; border: none; cursor: pointer; line-height: 1; padding: 0 5px; }
+        .modal-close-btn:hover, .modal-close-btn:focus { color: black; text-decoration: none; }
+        .modal-body { overflow-y: auto; margin-bottom: 15px; }
+        #friend-select-list { max-height: 50vh; overflow-y: auto; padding-right: 5px;}
+        .modal-footer { padding-top: 15px; border-top: 1px solid #eee; text-align: right; }
+        #auth-container { max-width: 400px; margin: 50px auto; padding: 30px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); border: 1px solid #ddd; }
+        #auth-container h2 { text-align: center; margin-bottom: 25px; color: #483d8b; border-bottom: none; margin-left: 0; margin-right: 0; font-family: inherit; }
+        #auth-container form div { margin-bottom: 15px; }
+        #auth-container label { display: block; margin-bottom: 5px; color: #555; font-weight: 500; font-family: inherit; }
+        #auth-container input[type="email"], #auth-container input[type="password"], #auth-container input[type="text"] { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; font-family: inherit; }
+        #auth-container button[type="submit"] { width: 100%; padding: 12px; margin-top: 10px; }
+        #auth-container .switch-auth { text-align: center; margin-top: 20px; font-size: 0.9rem; }
+        #auth-container .switch-auth button, #auth-container .link-button { background: none; border: none; color: #6a5acd; text-decoration: underline; cursor: pointer; font-size: inherit; padding: 0; margin: 0; width: auto; font-family: inherit; display: inline; }
+        #auth-container .link-button:hover, #auth-container .switch-auth button:hover { color: #483d8b; }
+        #auth-container .error-message { color: #dc3545; font-size: 0.85rem; margin-top: 15px; text-align: center; display: none; }
+        #auth-container .success-message { color: #28a745; font-size: 0.85rem; margin-top: 10px; text-align: center; display: none; font-weight: 500; }
+        .letter-item-content-wrapper p.letter-content { white-space: pre-wrap; margin-bottom: 15px; font-family: inherit; color: inherit; word-wrap: break-word; overflow: hidden; }
+        .letter-item-content-wrapper p.letter-content.truncated { max-height: 10em; position: relative; margin-bottom: 5px; }
+        .letter-item-content-wrapper p.letter-content.truncated::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2em; background: linear-gradient(to bottom, transparent, #fffcf0); pointer-events: none; }
+        .see-more-btn { display: block; text-align: center; margin-top: 0; margin-bottom: 15px; font-family: inherit; font-size: 0.9rem; color: #6a5acd; cursor: pointer; background: none; border: none; text-decoration: underline; padding: 5px; }
+        .see-more-btn:hover { color: #483d8b; }
+        .letter-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #8b7d6b; font-family: inherit; margin-top: 15px; padding: 8px 5px 5px 5px; border-top: 1px dashed rgba(139, 125, 107, 0.4); position: relative; z-index: 1; flex-wrap: wrap; }
+        .letter-author-info { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; margin-bottom: 5px; cursor: pointer; flex-wrap: nowrap; }
+        .letter-author-name { font-weight: 600; color: #5a4a42; text-decoration: none; transition: color 0.2s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-grow: 0; flex-shrink: 1; margin-right: 5px; }
+        .letter-author-info:hover .letter-author-name { color: #6a5acd; text-decoration: underline; }
+        .follow-author-btn { font-size: 0.7rem; padding: 2px 6px; border: 1px solid #6a5acd; border-radius: 3px; cursor: pointer; background-color: transparent; color: #6a5acd; transition: background-color 0.2s, color 0.2s, border-color 0.2s; font-family: inherit; flex-shrink: 0; line-height: 1.3; }
+        .follow-author-btn:hover:not(:disabled) { background-color: #6a5acd; color: white; }
+        .follow-author-btn.following { background-color: #888; color: white; border-color: #888; }
+        .follow-author-btn.following:hover:not(:disabled) { background-color: #a00; border-color: #a00; }
+        .follow-author-btn:disabled { opacity: 0.6; cursor: wait; }
+        .letter-timestamp { text-align: right; margin-bottom: 5px; flex-shrink: 0; margin-left: 10px; }
+        .letter-actions { margin-top: 10px; padding: 0 5px; position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 12px; }
+        .letter-actions button { background: none; border: none; font-size: 1.1rem; cursor: pointer; padding: 5px; color: #8b4513; transition: color 0.2s ease, transform 0.2s ease; display: flex; align-items: center; gap: 3px; }
+        .letter-actions button:hover:not(:disabled) { color: #a0522d; transform: scale(1.1); }
+        .letter-actions button:disabled { color: #bdaa9b; cursor: not-allowed; transform: none;}
+        .letter-actions .action-count { font-size: 0.8rem; color: #777; font-family: inherit; margin-left: 2px; }
+        .letter-actions .like-btn.liked { color: #e15f41; font-weight: bold; }
+        .letter-actions .bookmark-btn.bookmarked { color: #6a5acd; }
+        .letter-actions .share-btn i { font-size: 1.0rem; }
+        .delete-btn { color: #dc3545 !important; }
+        .delete-btn:hover:not(:disabled) { color: #bd2130 !important; }
+        .comments-section { margin: 15px 5px 5px 5px; padding-top: 15px; border-top: 1px solid rgba(139, 125, 107, 0.2); font-family: inherit; font-size: 0.9rem; line-height: 1.5; color: #444; position: relative; z-index: 1; }
+        .comments-section.hidden { display: none; }
+        .comments-list { margin-bottom: 15px; max-height: 300px; overflow-y: auto; padding-right: 5px;}
+        .comment-item { margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px dotted rgba(139, 125, 107, 0.2); }
+        .comment-item:last-child { border-bottom: none; margin-bottom: 0;}
+        .comment-meta { font-size: 0.75rem; color: #777; margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 5px; }
+        .comment-author-time { display: flex; align-items: center; flex-grow: 1; margin-right: 10px; flex-wrap: wrap; }
+        .comment-meta .comment-author { font-weight: 500; color: #555; margin-right: 5px; cursor: pointer; }
+        .comment-meta .comment-author:hover { color: #6a5acd; text-decoration: underline; }
+        .comment-text { white-space: pre-wrap; word-wrap: break-word; margin-bottom: 6px; }
+        .comment-actions { font-size: 0.8rem; display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
+        .comment-actions button { font-size: 0.8rem; padding: 2px 4px; color: #777; display: flex; align-items: center; gap: 3px; background: none; border: none; cursor: pointer; }
+        .comment-actions button:hover:not(:disabled) { color: #333; }
+        .comment-actions .like-btn.liked { color: #e15f41; font-weight: bold; }
+        .comment-actions .action-count { font-size: 0.75rem; }
+        .comment-actions .delete-comment-btn { color: #dc3545 !important; font-size: 0.75rem; }
+        .comment-actions .delete-comment-btn:hover:not(:disabled) { color: #bd2130 !important; }
+        .comment-actions button:disabled { color: #bbb; cursor: not-allowed; }
+        .comment-replies { margin-left: 30px; margin-top: 10px; padding-top: 10px; border-top: 1px dashed rgba(139, 125, 107, 0.1); }
+        .reply-item { font-size: 0.85rem; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px dotted rgba(139, 125, 107, 0.15); position: relative; }
+        .reply-item:last-child { border-bottom: none; margin-bottom: 0; }
+        .reply-item .comment-meta { margin-bottom: 3px; }
+        .reply-item .comment-text { margin-bottom: 4px; }
+        .reply-item .delete-comment-btn { position: absolute; top: 2px; right: 2px; font-size: 0.7rem; padding: 1px 3px; }
+        .add-comment-form, .add-reply-form { margin-top: 15px; display: flex; gap: 8px; align-items: flex-start; }
+        .add-reply-form { margin-top: 10px; margin-left: 30px; }
+        .add-reply-form.hidden { display: none; }
+        .add-comment-form textarea, .add-reply-form textarea { flex-grow: 1; min-height: 40px; height: auto; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem; font-family: inherit; resize: vertical; line-height: 1.4; }
+        .add-comment-form button, .add-reply-form button { flex-shrink: 0; padding: 8px 15px; font-size: 0.9rem; height: 40px; }
+        #inbox-list .inbox-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; border-bottom: 1px solid #eee; background-color: #fff; margin: 0 10px 5px 10px; border-radius: 4px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); cursor: pointer; }
+        #inbox-list .inbox-item:hover { background-color: #f9f9f9; }
+        #inbox-list .inbox-item.unread { background-color: #eff; font-weight: 500; }
+        #inbox-list .inbox-item-info { display: flex; flex-direction: column; flex-grow: 1; margin-right: 10px; min-width: 0; }
+        #inbox-list .inbox-sender { font-weight: 600; color: #333; font-size: 1rem; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        #inbox-list .inbox-sender.sent-copy { font-style: italic; color: #666; }
+        #inbox-list .inbox-snippet { font-size: 0.9rem; color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        #inbox-list .inbox-meta { display: flex; flex-direction: column; align-items: flex-end; font-size: 0.75rem; color: #999; flex-shrink: 0; }
+        #inbox-list .inbox-time {}
+        #inbox-share-invite { text-align: center; margin: 15px 10px; }
+        #settings-section form { margin: 20px; padding: 20px; background-color: #fff; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        #settings-section .settings-group { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #eee;}
+        #settings-section .settings-group:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0;}
+        #settings-section label { display: block; margin-bottom: 8px; font-weight: 500; }
+        #settings-section input[type="text"], #settings-section select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 15px; font-family: inherit; }
+        #settings-section button { }
+        #settings-section .contact-link { display: block; margin-top: 25px; text-align: center; font-size: 0.9rem; padding-top: 20px; border-top: 1px solid #eee;}
+        #settings-section .contact-link a { color: #6a5acd; text-decoration: underline; }
+        #settings-section .contact-link a:hover { color: #483d8b; }
+        #settings-section .success-message { color: #28a745; font-size: 0.9rem; text-align: center; margin-top: 10px; display: none; }
+        .uid-display-area { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+        .uid-display-area span { flex-grow: 1; padding: 10px; background-color: #eee; border-radius: 4px; font-family: monospace; font-size: 0.9rem; color: #555; overflow-wrap: break-word; border: 1px solid #ccc;}
+        .uid-display-area button { flex-shrink: 0; padding: 8px 12px; font-size: 0.8rem; }
+
+        #leaderboard-section { }
+        #leaderboard-list { list-style: none; padding: 0 10px; margin: 0; }
+        .leaderboard-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; margin-bottom: 8px; background-color: #fff; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); border: 1px solid #eee; }
+        .leaderboard-item:last-child { margin-bottom: 0; }
+        .leaderboard-rank { font-weight: bold; color: #6a5acd; min-width: 30px; text-align: right; margin-right: 15px; font-size: 1.1rem;}
+        .leaderboard-info { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; margin-right: 15px;}
+        .leaderboard-name { font-weight: 500; color: #333; font-size: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer;}
+        .leaderboard-name:hover { color: #6a5acd; text-decoration: underline;}
+        .leaderboard-count { font-size: 0.9rem; color: #555; text-align: right; min-width: 80px; display: flex; align-items: center; justify-content: flex-end; gap: 4px; }
+        .leaderboard-count i { color: #aaa; font-size: 0.8rem;}
+        /* Search Section Styles */
+        #search-section { }
+        #user-search-input { width: calc(100% - 20px); margin: 0 10px 20px 10px; padding: 10px 15px; font-size: 1rem; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; display: block; }
+        #search-results-list { list-style: none; padding: 0; margin: 0; }
+        /* Ad container styling */
+        .ad-container {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 15px 10px; /* Consistent with letter-item margin */
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70px; /* Ensure space even if ad doesn't load */
+        }
+
+        #letter-viewer { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); }
+        #letter-viewer.show { display: block; }
+        #letter-viewer .modal-content { width: 95%; max-width: 800px; height: 90vh; background-color: transparent; border: none; box-shadow: none; padding: 0; display: flex; flex-direction: column; margin: auto; }
+        #letter-viewer-content-wrapper { font-family: 'Dancing Script', cursive; font-size: 1.4rem; line-height: 1.9; color: #5a4a42; background-color: #faf0e6; background-image: linear-gradient(45deg, rgba(189, 174, 155, 0.06) 25%, transparent 25%, transparent 75%, rgba(189, 174, 155, 0.06) 75%, rgba(189, 174, 155, 0.06)), linear-gradient(-45deg, rgba(189, 174, 155, 0.06) 25%, transparent 25%, transparent 75%, rgba(189, 174, 155, 0.06) 75%, rgba(189, 174, 155, 0.06)); background-size: 4px 4px; box-shadow: inset 0px 0px 8px rgba(0,0,0,0.1), 0 5px 15px rgba(0,0,0,0.3); border-style: solid; border-color: transparent; border-width: 35px; padding: 25px; border-image-source: url('https://mdn.github.io/css-examples/tools/border-image-generator/border-image.png'); border-image-slice: 30 fill; border-image-width: auto; border-image-repeat: stretch; border-radius: 0; box-sizing: border-box; overflow-y: auto; flex-grow: 1; }
+        #letter-viewer-content { white-space: pre-wrap; word-wrap: break-word; }
+        #letter-viewer-close-btn { position: absolute; top: 10px; right: 20px; color: #fff; font-size: 35px; font-weight: bold; background: rgba(0,0,0,0.3); border-radius: 50%; width: 40px; height: 40px; line-height: 40px; text-align: center; cursor: pointer; border: none; z-index: 3001; }
+        #letter-viewer-close-btn:hover { background: rgba(0,0,0,0.6); }
+        #letter-viewer-meta { font-size: 0.8rem; margin-top: 20px; border-top: 1px dashed #aaa; padding-top: 10px; font-family: inherit; color: #666; }
+        #letter-viewer-meta-sender-label { margin-right: 5px; }
+        #letter-viewer-actions { margin-top: 15px; text-align: right; display: flex; gap: 10px; justify-content: flex-end; }
+        #letter-viewer-actions button { }
+        #write-section form { margin: 20px; }
+        #letter-form .options { margin-top: 15px; margin-bottom: 15px; font-size: 0.9rem; color: #555; font-family: inherit; }
+        #letter-form .options legend { font-weight: 500; margin-bottom: 5px; display: block;}
+        #letter-form .options label { margin-right: 10px; cursor: pointer; }
+        #letter-form input[type="radio"] { margin-right: 3px; vertical-align: middle; }
+        #letter-form .actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 10px; flex-wrap: wrap; }
+        button:not(.link-button):not(#logout-btn):not(.nav-btn):not(.action-btn):not(.delete-btn):not(.comment-action-btn):not(.profile-tab-btn):not(.follow-author-btn):not(.unfollow-btn):not(.modal-close-btn):not(#letter-viewer-close-btn):not(.see-more-btn):not(.view-profile-btn):not(#copy-uid-btn):not(#add-uid-button) { background-color: #6a5acd; color: white; border: none; padding: 10px 18px; border-radius: 4px; cursor: pointer; font-size: 1rem; font-family: inherit; transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        button:hover:not(.link-button):not(#logout-btn):not(.nav-btn):not(.action-btn):not(.delete-btn):not(.comment-action-btn):not(.profile-tab-btn):not(.follow-author-btn):not(.unfollow-btn):not(.modal-close-btn):not(#letter-viewer-close-btn):not(.see-more-btn):not(.view-profile-btn):not(#copy-uid-btn):not(#add-uid-button):not(:disabled) { background-color: #483d8b; box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
+        button:active:not(.link-button):not(#logout-btn):not(.nav-btn):not(.action-btn):not(.delete-btn):not(.comment-action-btn):not(.profile-tab-btn):not(.follow-author-btn):not(.unfollow-btn):not(.modal-close-btn):not(#letter-viewer-close-btn):not(.see-more-btn):not(.view-profile-btn):not(#copy-uid-btn):not(#add-uid-button):not(:disabled) { background-color: #3a2d74; box-shadow: inset 0 1px 3px rgba(0,0,0,0.2); transform: translateY(1px); }
+        button:disabled:not(.link-button):not(#logout-btn):not(.nav-btn):not(.action-btn):not(.delete-btn):not(.comment-action-btn):not(.profile-tab-btn):not(.follow-author-btn):not(.unfollow-btn):not(.modal-close-btn):not(#letter-viewer-close-btn):not(.see-more-btn):not(.view-profile-btn):not(#copy-uid-btn):not(#add-uid-button) { background-color: #ccc; cursor: not-allowed; box-shadow: none; transform: none; opacity: 0.7; }
+        #copy-uid-btn, #add-uid-button { }
+        .add-comment-form button, .add-reply-form button { }
+        .add-comment-form button:disabled, .add-reply-form button:disabled { }
+        footer { text-align: center; margin-top: 30px; padding: 15px; background-color: #dcd0bb; color: #5a4a42; font-size: 0.9rem; font-family: inherit; }
+        .notice-text { text-align: center; color: #777; font-style: italic; margin: 30px 20px; font-family: inherit; font-size: 0.95rem; }
+        .notice-text.error { color: #dc3545; font-style: normal; font-weight: 500; }
+        #loading-indicator { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.7); z-index: 9999; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; color: #6a5acd; font-family: inherit; }
+        br.responsive-br { display: none; }
+        #bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; height: 60px; background-color: #fff; border-top: 1px solid #ddd; box-shadow: 0 -2px 5px rgba(0,0,0,0.1); display: flex; justify-content: space-around; align-items: center; z-index: 1000; }
+        .nav-btn { background: none; border: none; color: #888; font-size: 0.8rem; font-family: inherit; cursor: pointer; padding: 5px 10px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: color 0.2s ease; height: 100%; position: relative; flex-basis: 0; }
+        .nav-btn i { font-size: 1.4rem; margin-bottom: 3px; }
+        .nav-btn span { display: block; line-height: 1.2; }
+        .nav-btn.active { color: #6a5acd; font-weight: 500; }
+        .nav-btn:hover { color: #5a4aae; }
+        #nav-write-btn { color: #888; }
+        #nav-write-btn.active { color: #6a5acd; }
+        .notification-badge { position: absolute; top: 2px; right: 15%; background-color: red; color: white; font-size: 0.65rem; width: 16px; height: 16px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; }
+
+
+        @media (max-width: 600px) {
+             main { margin: 10px auto; padding: 5px; } section h2 { margin-left: 10px; margin-right: 10px; font-size: 1.3rem; } .profile-header { padding: 10px 15px;} .profile-name { font-size: 1.1rem; } .profile-email { font-size: 0.8rem;} .follow-stats { font-size: 0.8rem; gap: 15px;}
+             #letter-form textarea, .letter-item-content-wrapper { margin: 15px 10px; border-width: 20px; font-size: 1.2rem; padding: 15px; border-image-slice: 25 fill; }
+             #letter-form textarea { min-height: 200px; }
+             #write-section form { margin: 10px; }
+             #letter-form .actions { justify-content: center; }
+             #letter-form .actions button { width: auto; max-width: 100%; }
+             #letter-form .options br.responsive-br { display: block; margin-bottom: 8px; }
+             .letter-meta { font-size: 0.7rem; } .letter-author-info { margin-bottom: 5px; width: 100%; justify-content: flex-start; flex-wrap: wrap; gap: 5px; } .letter-author-name { flex-grow: 0; margin-right: 8px; } .follow-author-btn { flex-shrink: 0; } .letter-timestamp { width: 100%; text-align: right; margin-left: 0; } .letter-actions { gap: 8px; } .letter-actions button { font-size: 1rem; gap: 2px; } .letter-actions .action-count { font-size: 0.75rem; } .comments-section { font-size: 0.85rem; margin: 10px 0 0 0; } .add-comment-form textarea, .add-reply-form textarea { font-size: 0.85rem; } .add-comment-form button, .add-reply-form button { font-size: 0.85rem; padding: 6px 12px; height: auto; } .comment-meta { font-size: 0.7rem;} .comment-author-time { margin-right: 5px; flex-wrap: wrap; gap: 3px; } .comment-actions { font-size: 0.75rem; gap: 8px; } .comment-actions button { font-size: 0.75rem; gap: 2px;} .comment-actions .action-count { font-size: 0.7rem; } .comment-replies { margin-left: 15px; } .reply-item { font-size: 0.8rem; }
+             header { flex-wrap: wrap; }
+             header h1 { margin-right: 0; flex-basis: 100%; order: 1; text-align: center; margin-bottom: 5px; font-size: 1.4rem; }
+             #user-info { order: 2; flex-basis: 100%; justify-content: center; background-color: #483d8b; padding: 8px 0; font-size: 0.85rem; text-align: center; }
+             #user-info span#user-display-name { display: inline-block; margin-bottom: 0; margin-right: 10px; max-width: 150px; vertical-align: middle; }
+             #logout-btn { display: inline-block; margin-left: 0; margin-top: 0; vertical-align: middle; }
+             #auth-container { margin: 20px; padding: 20px; }
+             .nav-btn { font-size: 0.65rem; padding: 5px 2px; } .nav-btn i { font-size: 1.2rem; } .profile-tab-btn { padding: 8px 10px; font-size: 0.9rem;}
+             #following-list .following-item, #friend-select-list .friend-item, #search-results-list .search-result-item { padding: 8px 10px; margin: 0 5px 5px 5px; }
+             .following-name, .friend-name, .search-result-name { font-size: 0.9rem; }
+             .following-email, .friend-email, .search-result-email { font-size: 0.75rem; }
+             #following-list .unfollow-btn, #search-results-list .view-profile-btn { font-size: 0.7rem; padding: 2px 6px;}
+             #letter-viewer .modal-content { width: 100%; height: 100%; max-height: 100vh; } #letter-viewer-content-wrapper { border-width: 20px; font-size: 1.2rem; padding: 15px; } #letter-viewer-close-btn { top: 5px; right: 5px; font-size: 25px; width: 30px; height: 30px; line-height: 30px; } .modal-content { width: 95%; max-height: 90vh; } .notification-badge { right: 10%; }
+             .leaderboard-item { flex-direction: row; padding: 10px; align-items: center;}
+             .leaderboard-rank { min-width: 25px; margin-right: 10px; font-size: 1rem; }
+             .leaderboard-info { margin-right: 10px; }
+             .leaderboard-name { font-size: 0.9rem; }
+             .leaderboard-count { min-width: 60px; font-size: 0.8rem; }
+             .uid-display-area { flex-direction: column; align-items: stretch; gap: 5px; }
+             .uid-display-area span { text-align: center; font-size: 0.85rem; }
+             #add-uid-area { margin: 0 5px 15px 5px; padding: 10px; }
+         }
+        /* ==================== CSS কোড শেষ ==================== */
+  </style>
+ </head>
+ <body>
+  <!-- HTML Structure -->
+  <div data-translate-key="loading" id="loading-indicator">
+   লোড হচ্ছে...
+  </div>
+  <div class="hidden" id="auth-container">
+   <form id="login-form">
+    <h2 data-translate-key="login_heading">
+     লগইন করুন
+    </h2>
+    <div>
+     <label data-translate-key="label_email" for="login-email">
+      ইমেইল:
+     </label>
+     <input autocomplete="email" id="login-email" required="" type="email"/>
+    </div>
+    <div>
+     <label data-translate-key="label_password" for="login-password">
+      পাসওয়ার্ড:
+     </label>
+     <input autocomplete="current-password" id="login-password" required="" type="password"/>
+    </div>
+    <div style="text-align: right; font-size: 0.85rem; margin-bottom: 15px; margin-top: -5px;">
+     <button class="link-button" data-translate-key="forgot_password" id="forgot-password-btn" type="button">
+      পাসওয়ার্ড ভুলে গেছেন?
+     </button>
+    </div>
+    <button data-translate-key="login_button" type="submit">
+     লগইন
+    </button>
+    <p class="error-message" id="login-error">
+    </p>
+    <p class="success-message" id="reset-message">
+    </p>
+    <div class="switch-auth">
+     <span data-translate-key="no_account">
+      অ্যাকাউন্ট নেই?
+     </span>
+     <button data-translate-key="register_link" id="show-signup" type="button">
+      রেজিস্টার করুন
+     </button>
+    </div>
+   </form>
+   <form class="hidden" id="signup-form">
+    <h2 data-translate-key="register_heading">
+     রেজিস্টার করুন
+    </h2>
+    <div>
+     <label data-translate-key="label_display_name" for="signup-name">
+      প্রদর্শিত নাম:
+     </label>
+     <input autocomplete="name" id="signup-name" required="" type="text"/>
+    </div>
+    <div>
+     <label data-translate-key="label_email" for="signup-email">
+      ইমেইল:
+     </label>
+     <input autocomplete="email" id="signup-email" required="" type="email"/>
+    </div>
+    <div>
+     <label data-translate-key="label_password_signup" for="signup-password">
+      পাসওয়ার্ড (৬+ অক্ষর):
+     </label>
+     <input autocomplete="new-password" id="signup-password" minlength="6" required="" type="password"/>
+    </div>
+    <button data-translate-key="register_button" type="submit">
+     রেজিস্টার
+    </button>
+    <p class="error-message" id="signup-error">
+    </p>
+    <div class="switch-auth">
+     <span data-translate-key="already_account">
+      ইতিমধ্যে অ্যাকাউন্ট আছে?
+     </span>
+     <button data-translate-key="login_link" id="show-login" type="button">
+      লগইন করুন
+     </button>
+    </div>
+   </form>
+  </div>
+  <!-- App Container -->
+  <div class="hidden" id="app-container">
+   <header>
+    <h1 data-translate-key="app_title">
+     চিঠি অ্যাপ
+    </h1>
+    <div class="hidden" id="user-info">
+     <span data-translate-key="tooltip_go_profile" id="user-display-name" title="প্রোফাইলে যান">
+     </span>
+     <button data-translate-key="logout_button" id="logout-btn">
+      লগআউট
+     </button>
+    </div>
+   </header>
+   <main>
+    <section id="feed-section">
+     <h2 data-translate-key="feed_heading" id="feed-heading-clickable" title="সর্ট করার নিয়ম পরিবর্তন করতে ক্লিক করুন" style="cursor:pointer;">
+      চিঠির ফিড (পাবলিক) <span id="current-feed-sort-indicator" style="font-size: 0.7em; color: #888; margin-left: 5px;"></span>
+     </h2>
+     <div id="feed-content">
+     </div>
+    </section>
+    <section class="hidden" id="search-section">
+      <h2 data-translate-key="search_heading">ব্যবহারকারী খুঁজুন</h2>
+      <input type="search" id="user-search-input" data-translate-key="placeholder_search_users" placeholder="নাম দিয়ে খুঁজুন..." autocomplete="off">
+      <div id="search-results-list">
+        <p class="notice-text" data-translate-key="placeholder_search_prompt">খুঁজতে কমপক্ষে ২ অক্ষর লিখুন।</p>
+      </div>
+    </section>
+    <section class="hidden" id="inbox-section">
+     <h2 data-translate-key="inbox_heading">
+      ইনবক্স
+     </h2>
+     <div id="inbox-share-invite">
+      <button class="link-button" id="inbox-invite-btn" style="font-size: 0.9rem;">
+       ✉️
+       <span data-translate-key="invite_friends">
+        বন্ধুদের আমন্ত্রণ জানান
+       </span>
+      </button>
+     </div>
+     <div id="inbox-list">
+     </div>
+    </section>
+    <section class="hidden" id="write-section">
+     <h2 data-translate-key="write_heading">
+      নতুন চিঠি
+     </h2>
+     <form id="letter-form">
+      <textarea data-translate-key="placeholder_write_letter" id="letter-content" placeholder="প্রিয়..." required="">
+      </textarea>
+      <div class="options">
+       <legend data-translate-key="privacy_label">
+        গোপনীয়তা:
+       </legend>
+       <br class="responsive-br"/>
+       <input checked="" id="privacy-private" name="privacy" type="radio" value="private"/>
+       <label data-translate-key="privacy_private" for="privacy-private">
+        শুধু আমি
+       </label>
+       <br class="responsive-br"/>
+       <input id="privacy-friends" name="privacy" type="radio" value="friends"/>
+       <label data-translate-key="privacy_friends" for="privacy-friends">
+        বন্ধুদের দেখাবো
+       </label>
+       <br class="responsive-br"/>
+       <input id="privacy-public" name="privacy" type="radio" value="public"/>
+       <label data-translate-key="privacy_public" for="privacy-public">
+        পাবলিক ফিড
+       </label>
+      </div>
+      <div class="hidden" id="friend-select-container" style="margin-top: 10px;">
+       <button id="open-friend-select-modal-btn" type="button">
+        <span data-translate-key="select_friends">
+         বন্ধু নির্বাচন
+        </span>
+        (
+        <span id="selected-friend-count">
+         0
+        </span>
+        )
+       </button>
+      </div>
+      <div class="actions">
+       <button id="submit-letter-btn" type="submit">
+        ✉️
+        <span data-translate-key="save_button">
+         সংরক্ষণ
+        </span>
+       </button>
+      </div>
+     </form>
+    </section>
+    <section class="hidden" id="profile-section">
+     <div class="profile-header">
+      <div class="profile-name" id="profile-view-name">
+      </div>
+      <div class="profile-email" id="profile-view-email">
+      </div>
+      <div class="follow-stats">
+       <div id="follower-count">
+        <span data-translate-key="followers_label">
+         ফলোয়ার:
+        </span>
+        <span>
+         0
+        </span>
+       </div>
+       <div id="following-count">
+        <span data-translate-key="following_label">
+         ফলোয়িং:
+        </span>
+        <span>
+         0
+        </span>
+       </div>
+      </div>
+     </div>
+     <div class="profile-tabs">
+      <button class="profile-tab-btn active" data-translate-key="profile_tab_myletters" id="profile-tab-myletters">
+       আমার চিঠি
+      </button>
+      <button class="profile-tab-btn" data-translate-key="profile_tab_bookmarks" id="profile-tab-bookmarks">
+       বুকমার্ক
+      </button>
+      <button class="profile-tab-btn" data-translate-key="profile_tab_following" id="profile-tab-following">
+       ফলোয়িং
+      </button>
+     </div>
+     <div class="profile-content" id="my-letters-content">
+      <div id="letter-archive">
+      </div>
+     </div>
+     <div class="profile-content hidden" id="bookmarks-content">
+      <div id="bookmark-archive">
+      </div>
+     </div>
+     <div class="profile-content hidden" id="following-content">
+       <div id="add-uid-area">
+           <label for="add-uid-input" data-translate-key="label_add_uid">UID দিয়ে বন্ধু যোগ করুন:</label>
+           <input type="text" id="add-uid-input" data-translate-key="placeholder_enter_uid" placeholder="ইউজার আইডি লিখুন...">
+           <button id="add-uid-button" data-translate-key="button_add_uid">ব্যবহারকারী যোগ</button>
+           <p id="add-uid-message"></p>
+       </div>
+      <div id="following-list">
+      </div>
+     </div>
+    </section>
+    <section class="hidden" id="profile-view-section">
+     <h2>
+      <button class="back-btn" data-translate-key="tooltip_back" id="profile-view-back-btn" title="ফেরত যান">
+       <i class="fas fa-arrow-left">
+       </i>
+      </button>
+      <span data-translate-key="profile_heading">
+       প্রোফাইল
+      </span>
+      <span></span>
+     </h2>
+     <div class="profile-header">
+      <div class="profile-name" id="other-profile-view-name">
+      </div>
+      <div class="profile-email" id="other-profile-view-email">
+      </div>
+      <div class="follow-stats">
+       <div id="other-follower-count">
+        <span data-translate-key="followers_label">
+         ফলোয়ার:
+        </span>
+        <span>
+         0
+        </span>
+       </div>
+       <div id="other-following-count">
+        <span data-translate-key="following_label">
+         ফলোয়িং:
+        </span>
+        <span>
+         0
+        </span>
+       </div>
+      </div>
+      <div id="profile-action-area">
+      </div>
+     </div>
+     <div id="other-profile-letters">
+      <h3 data-translate-key="other_profile_public_letters" style="text-align:center; color:#555; margin:30px 20px 10px; font-weight:normal; border-bottom:1px solid #ccc; padding-bottom:5px;">
+       পাবলিক চিঠি
+      </h3>
+      <div id="other-profile-letters-list">
+      </div>
+     </div>
+    </section>
+    <section class="hidden" id="settings-section">
+     <h2 data-translate-key="settings_heading">
+      সেটিংস
+     </h2>
+     <form id="settings-form">
+      <div class="settings-group">
+       <label data-translate-key="label_display_name" for="settings-display-name">
+        প্রদর্শিত নাম:
+       </label>
+       <input id="settings-display-name" minlength="3" required="" type="text"/>
+       <button data-translate-key="save_button" type="submit">
+        সংরক্ষণ
+       </button>
+       <p class="success-message" id="settings-success-msg">
+       </p>
+      </div>
+
+       <div class="settings-group">
+            <label data-translate-key="label_your_uid">আপনার ইউজার আইডি:</label>
+            <div class="uid-display-area">
+                <span id="user-uid-display">লোড হচ্ছে...</span>
+                <button type="button" id="copy-uid-btn" data-translate-key="button_copy_uid">কপি</button>
+            </div>
+       </div>
+
+      <div class="settings-group">
+       <label data-translate-key="language_label" for="language-select">
+        ভাষা:
+       </label>
+       <select id="language-select">
+        <option value="en">
+         English
+        </option>
+        <option value="bn">
+         বাংলা
+        </option>
+        <option value="hi">
+         हिन्दी
+        </option>
+       </select>
+      </div>
+      <div class="settings-group">
+       <button id="go-to-leaderboard-btn" type="button">
+        <i class="fas fa-trophy">
+        </i>
+        <span data-translate-key="leaderboard_button">
+         লিডারবোর্ড
+        </span>
+       </button>
+      </div>
+     </form>
+     <div class="contact-link">
+      <span data-translate-key="contact_label">
+       যোগাযোগ:
+      </span>
+      <a href="mailto:ramimhasan920@gmail.com">
+       ramimhasan920@gmail.com
+      </a>
+     </div>
+    </section>
+    <section class="hidden" id="leaderboard-section">
+     <h2>
+      <button class="back-btn" data-translate-key="tooltip_back" id="leaderboard-back-btn" title="ফেরত যান">
+       <i class="fas fa-arrow-left">
+       </i>
+      </button>
+      <span data-translate-key="leaderboard_heading">
+       লিডারবোর্ড
+      </span>
+      <span></span>
+     </h2>
+     <div id="leaderboard-list">
+     </div>
+    </section>
+   </main>
+   <nav id="bottom-nav">
+    <button class="nav-btn" id="nav-feed-btn">
+     <i class="fas fa-stream">
+     </i>
+     <span data-translate-key="nav_feed">
+      ফিড
+     </span>
+    </button>
+    <button class="nav-btn" id="nav-search-btn">
+      <i class="fas fa-search"></i>
+      <span data-translate-key="nav_search">অনুসন্ধান</span>
+    </button>
+    <button class="nav-btn" id="nav-inbox-btn">
+     <i class="fas fa-inbox">
+     </i>
+     <span data-translate-key="nav_inbox">
+      ইনবক্স
+     </span>
+     <span class="notification-badge hidden" id="inbox-notification-badge">
+      0
+     </span>
+    </button>
+    <button class="nav-btn" id="nav-write-btn">
+     <i class="fas fa-pencil-alt">
+     </i>
+     <span data-translate-key="nav_write">
+      লিখুন
+     </span>
+    </button>
+    <button class="nav-btn" id="nav-profile-btn">
+     <i class="fas fa-user-circle">
+     </i>
+     <span data-translate-key="nav_profile">
+      প্রোফাইল
+     </span>
+    </button>
+    <button class="nav-btn" id="nav-settings-btn">
+     <i class="fas fa-cog">
+     </i>
+     <span data-translate-key="nav_settings">
+      সেটিংস
+     </span>
+    </button>
+   </nav>
+   <footer>
+    <p data-translate-key="footer_text">
+     © চিঠি অ্যাপ
+    </p>
+   </footer>
+  </div>
+  <!-- Friend Select Modal -->
+  <div class="modal" id="friend-select-modal">
+   <div class="modal-content">
+    <div class="modal-header">
+     <h3 data-translate-key="modal_send_to_whom">
+      কাদের পাঠাবেন?
+     </h3>
+     <button class="modal-close-btn" data-translate-key="tooltip_close" id="friend-select-close-btn" title="বন্ধ করুন">
+      ×
+     </button>
+    </div>
+    <div class="modal-body">
+     <div id="friend-select-list">
+     </div>
+    </div>
+    <div class="modal-footer">
+     <button id="confirm-friend-select-btn">
+      <span data-translate-key="confirm_button">
+       নিশ্চিত করুন
+      </span>
+      (
+      <span id="modal-selected-count">
+       0
+      </span>
+      )
+     </button>
+    </div>
+   </div>
+  </div>
+  <!-- Letter Viewer Modal -->
+  <div class="modal" id="letter-viewer">
+   <div class="modal-content">
+    <button data-translate-key="tooltip_close" id="letter-viewer-close-btn" title="বন্ধ করুন">
+     ×
+    </button>
+    <div id="letter-viewer-content-wrapper">
+     <div id="letter-viewer-content">
+     </div>
+     <div id="letter-viewer-meta">
+      <span data-translate-key="sender_label" id="letter-viewer-meta-sender-label">
+       প্রেরক:
+      </span>
+      <span id="letter-viewer-sender">
+      </span>
+      (
+      <span id="letter-viewer-time">
+      </span>
+      )
+     </div>
+     <div id="letter-viewer-actions">
+     </div>
+    </div>
+   </div>
+  </div>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-app-compat.js">
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-auth-compat.js">
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-database-compat.js">
+  </script>
+  <script>
+   // ==================== JavaScript Code Start (v3.9.16 - Improved Ad Script Injection) ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("চিঠি অ্যাপ v3.9.16 (উন্নত বিজ্ঞাপন স্ক্রিপ্ট ইনজেকশন) লোড হচ্ছে...");
+
+            // --- Translations Object (অনুবাদ অবজেক্ট) ---
+            const translations = {
+                advertisement_label: { en: "Advertisement", bn: "বিজ্ঞাপন", hi: "विज्ञापन" }, // বিজ্ঞাপনের জন্য নতুন অনুবাদ
+                label_your_uid: { en: "Your User ID:", bn: "আপনার ইউজার আইডি:", hi: "आपकी उपयोगकर्ता आईडी:" },
+                button_copy_uid: { en: "Copy", bn: "কপি", hi: "कॉपी" },
+                tooltip_copied: { en: "Copied!", bn: "কপি হয়েছে!", hi: "कॉपी किया गया!" },
+                label_add_uid: { en: "Add Friend by UID:", bn: "UID দিয়ে বন্ধু যোগ করুন:", hi: "यूआईडी द्वारा मित्र जोड़ें:" },
+                placeholder_enter_uid: { en: "Enter User ID...", bn: "ইউজার আইডি লিখুন...", hi: "उपयोगकर्ता आईडी दर्ज करें..." },
+                button_add_uid: { en: "Add User", bn: "ব্যবহারকারী যোগ", hi: "उपयोगकर्ता जोड़ें" },
+                alert_uid_empty: { en: "Please enter a User ID.", bn: "অনুগ্রহ করে ইউজার আইডি লিখুন।", hi: "कृपया एक उपयोगकर्ता आईडी दर्ज करें।" },
+                alert_cannot_follow_self: { en: "You cannot follow yourself.", bn: "আপনি নিজেকে ফলো করতে পারবেন না।", hi: "आप स्वयं को फ़ॉलो नहीं कर सकते।" },
+                alert_already_following: { en: "You are already following this user.", bn: "আপনি ইতিমধ্যে এই ব্যবহারকারীকে ফলো করছেন।", hi: "आप पहले से ही इस उपयोगकर्ता को फ़ॉलो कर रहे हैं।" },
+                alert_uid_user_not_found: { en: "User with this ID not found.", bn: "এই আইডি সহ ব্যবহারকারী খুঁজে পাওয়া যায়নি।", hi: "इस आईडी वाला उपयोगकर्ता नहीं मिला।" },
+                alert_adding_user: { en: "Adding user...", bn: "ব্যবহারকারী যোগ করা হচ্ছে...", hi: "उपयोगकर्ता जोड़ा जा रहा है..." },
+                alert_follow_successful: { en: "User followed successfully!", bn: "ব্যবহারকারীকে সফলভাবে ফলো করা হয়েছে!", hi: "उपयोगकर्ता को सफलतापूर्वक फ़ॉलो किया गया!" },
+                alert_follow_failed: { en: "Failed to follow user.", bn: "ব্যবহারকারীকে ফলো করতে ব্যর্থ।", hi: "उपयोगकर्ता को फ़ॉलो करने में विफल।" },
+                sort_indicator_timestamp: { en: "(Newest)", bn: "(নতুন)", hi: "(नवीनतम)" },
+                sort_indicator_likes: { en: "(Popular)", bn: "(জনপ্রিয়)", hi: "(सबसे लोकप्रिय)" },
+                sort_indicator_random_display: { en: "(Shuffled)", bn: "(এলোমেলো)", hi: "(मिश्रित)" },
+                sort_indicator_pure_random: { en: "(Random Pick)", bn: "(এলোমেলো চয়ন)", hi: "(यादृच्छिक चयन)"},
+                app_title: { en: "Chithi App", bn: "চিঠি অ্যাপ", hi: "चिट्ठी ऐप" },
+                loading: { en: "Loading...", bn: "লোড হচ্ছে...", hi: "लोड हो रहा है..." },
+                login_heading: { en: "Log In", bn: "লগইন করুন", hi: "लॉग इन करें" },
+                label_email: { en: "Email:", bn: "ইমেইল:", hi: "ईमेल:" },
+                label_password: { en: "Password:", bn: "পাসওয়ার্ড:", hi: "पासवर्ड:" },
+                label_password_signup: { en: "Password (6+ characters):", bn: "পাসওয়ার্ড (৬+ অক্ষর):", hi: "पासवर्ड (6+ अक्षर):" },
+                forgot_password: { en: "Forgot Password?", bn: "পাসওয়ার্ড ভুলে গেছেন?", hi: "पासवर्ड भूल गए?" },
+                login_button: { en: "Log In", bn: "লগইন", hi: "लॉग इन करें" },
+                no_account: { en: "No account?", bn: "অ্যাকাউন্ট নেই?", hi: "खाता नहीं है?" },
+                register_link: { en: "Register", bn: "রেজিস্টার করুন", hi: "रजिस्टर करें" },
+                register_heading: { en: "Register", bn: "রেজিস্টার করুন", hi: "रजिस्टर करें" },
+                label_display_name: { en: "Display Name:", bn: "প্রদর্শিত নাম:", hi: "प्रदर्शित नाम:" },
+                register_button: { en: "Register", bn: "রেজিস্টার", hi: "रजिस्टर करें" },
+                already_account: { en: "Already have an account?", bn: "ইতিমধ্যে অ্যাকাউন্ট আছে?", hi: "पहले से ही खाता है?" },
+                login_link: { en: "Log In", bn: "লগইন করুন", hi: "लॉग इन करें" },
+                logout_button: { en: "Logout", bn: "লগআউট", hi: "लॉग आउट" },
+                tooltip_go_settings: { en: "Go to Settings", bn: "সেটিংসে যান", hi: "सेटिंग्स में जाएं" },
+                tooltip_go_profile: { en: "Go to Profile", bn: "প্রোফাইলে যান", hi: "प्रोफ़ाइल में जाएं" },
+                feed_heading: { en: "Letter Feed (Public)", bn: "চিঠির ফিড (পাবলিক)", hi: "पत्र फ़ीड (सार्वजनिक)" },
+                inbox_heading: { en: "Inbox", bn: "ইনবক্স", hi: "इनबॉक्स" },
+                invite_friends: { en: "Invite Friends", bn: "বন্ধুদের আমন্ত্রণ জানান", hi: "मित्रों को आमंत्रित करें" },
+                write_heading: { en: "New Letter", bn: "নতুন চিঠি", hi: "नया पत्र" },
+                placeholder_write_letter: { en: "Dear...", bn: "প্রিয়...", hi: "प्रिय..." },
+                privacy_label: { en: "Privacy:", bn: "গোপনীয়তা:", hi: "गोपनीयता:" },
+                privacy_private: { en: "Only Me", bn: "শুধু আমি", hi: "केवल मैं" },
+                privacy_friends: { en: "Show Friends", bn: "বন্ধুদের দেখাবো", hi: "मित्रों को दिखाएं" },
+                privacy_public: { en: "Public Feed", bn: "পাবলিক ফিড", hi: "सार्वजनिक फ़ीड" },
+                select_friends: { en: "Select Friends", bn: "বন্ধু নির্বাচন", hi: "मित्र चुनें" },
+                save_button: { en: "Save", bn: "সংরক্ষণ", hi: "सहेजें" },
+                send_to_friends_button: { en: "Send to Friends", bn: "বন্ধুদের পাঠান", hi: "मित्रों को भेजें" },
+                post_to_feed_button: { en: "Post to Feed", bn: "ফিডে পোস্ট করুন", hi: "फ़ीड में पोस्ट करें" },
+                profile_heading: { en: "Profile", bn: "প্রোফাইল", hi: "प्रोफ़ाइल" },
+                followers_label: { en: "Followers:", bn: "ফলোয়ার:", hi: "फ़ॉलोअर्स:" },
+                following_label: { en: "Following:", bn: "ফলোয়িং:", hi: "फ़ॉलोइंग:" },
+                profile_tab_myletters: { en: "My Letters", bn: "আমার চিঠি", hi: "मेरे पत्र" },
+                profile_tab_bookmarks: { en: "Bookmarks", bn: "বুকমার্ক", hi: "बुकमार्क" },
+                profile_tab_following: { en: "Following", bn: "ফলোয়িং", hi: "फ़ॉलोइंग" },
+                other_profile_public_letters: { en: "Public Letters", bn: "পাবলিক চিঠি", hi: "सार्वजनिक पत्र" },
+                settings_heading: { en: "Settings", bn: "সেটিংস", hi: "सेटिंग्स" },
+                language_label: { en: "Language:", bn: "ভাষা:", hi: "भाषा:" },
+                leaderboard_button: { en: "Leaderboard", bn: "লিডারবোর্ড", hi: "लीडरबोर्ड" },
+                contact_label: { en: "Contact:", bn: "যোগাযোগ:", hi: "संपर्क करें:" },
+                nav_feed: { en: "Feed", bn: "ফিড", hi: "फ़ीड" },
+                nav_search: { en: "Search", bn: "অনুসন্ধান", hi: "खोजें" },
+                nav_inbox: { en: "Inbox", bn: "ইনবক্স", hi: "इनबॉक्स" },
+                nav_write: { en: "Write", bn: "লিখুন", hi: "लिखें" },
+                nav_profile: { en: "Profile", bn: "প্রোফাইল", hi: "प्रोफ़ाइल" },
+                nav_settings: { en: "Settings", bn: "সেটিংস", hi: "सेटिंग्स" },
+                footer_text: { en: "© Chithi App", bn: "© চিঠি অ্যাপ", hi: "© चिट्ठी ऐप" },
+                modal_send_to_whom: { en: "Send To Whom?", bn: "কাদের পাঠাবেন?", hi: "किसे भेजें?" },
+                confirm_button: { en: "Confirm", bn: "নিশ্চিত করুন", hi: "पुष्टि करें" },
+                sender_label: { en: "Sender:", bn: "প্রেরক:", hi: "प्रेषक:" },
+                tooltip_close: { en: "Close", bn: "বন্ধ করুন", hi: "बंद करें" },
+                tooltip_back: { en: "Back", bn: "ফেরত যান", hi: "वापस" },
+                placeholder_no_letters: { en: "No letters yet.", bn: "কোনো চিঠি নেই।", hi: "अभी तक कोई पत्र नहीं।" },
+                placeholder_no_public_letters: { en: "No public letters yet.", bn: "কোনো পাবলিক চিঠি নেই।", hi: "अभी तक कोई सार्वजनिक पत्र नहीं।" },
+                placeholder_inbox_empty: { en: "Inbox is empty.", bn: "ইনবক্স খালি।", hi: "इनबॉक्स खाली है।" },
+                placeholder_no_bookmarks: { en: "No bookmarks yet.", bn: "কোনো বুকমার্ক নেই।", hi: "अभी तक कोई बुकमार्क नहीं।" },
+                placeholder_not_following: { en: "Not following anyone.", bn: "কাউকে ফলো করছেন না।", hi: "किसी को फ़ॉलो नहीं कर रहे हैं।" },
+                placeholder_follow_to_select: { en: "Follow someone to see them here.", bn: "কাউকে ফলো করলে তালিকা আসবে।", hi: "उन्हें यहां देखने के लिए किसी को फ़ॉलो करें।" },
+                placeholder_other_no_public: { en: "This user has no public letters.", bn: "লেখকের পাবলিক চিঠি নেই।", hi: "इस उपयोगकर्ता के पास कोई सार्वजनिक पत्र नहीं है।" },
+                error_loading_feed: { en: "Error loading feed:", bn: "ফিড লোড ত্রুটি:", hi: "फ़ीड लोड करने में त्रुटि:" },
+                error_fetching_letters: { en: "Could not fetch letters.", bn: "চিঠি আনতে সমস্যা।", hi: "पत्र लाने में असमर्थ।" },
+                error_fetching_bookmarks: { en: "Error loading bookmarks.", bn: "বুকমার্ক লোড সমস্যা।", hi: "बुकमार्क लोड करने में त्रुटि।" },
+                error_profile_view: { en: "Error loading profile.", bn: "প্রোফাইল লোড সমস্যা।", hi: "प्रोफ़ाइल लोड करने में त्रुटि।" },
+                tooltip_view_profile: { en: "View Profile: {name}", bn: "প্রোফাইল দেখুন: {name}", hi: "प्रोफ़ाइल देखें: {name}" },
+                tooltip_follow: { en: "Follow", bn: "ফলো করুন", hi: "फ़ॉलो करें" },
+                tooltip_unfollow: { en: "Unfollow", bn: "আনফলো করুন", hi: "अनफ़ॉलो करें" },
+                button_follow: { en: "Follow", bn: "ফলো", hi: "फ़ॉलो करें" },
+                button_unfollow: { en: "Unfollow", bn: "আনফলো", hi: "अनफ़ॉलो करें" },
+                see_more: { en: "See More", bn: "আরও দেখুন", hi: "और देखें" },
+                tooltip_like: { en: "Like", bn: "লাইক", hi: "लाइक" },
+                tooltip_unlike: { en: "Unlike", bn: "আনলাইক", hi: "अनलाइक" },
+                tooltip_comment: { en: "Comment", bn: "কমেন্ট", hi: "टिप्पणी" },
+                tooltip_bookmark: { en: "Bookmark", bn: "বুকমার্ক", hi: "बुकमार्क करें" },
+                tooltip_remove_bookmark: { en: "Remove Bookmark", bn: "বুকমার্ক সরান", hi: "बुकमार्क हटाएं" },
+                tooltip_share: { en: "Share", bn: "শেয়ার", hi: "शेयर करें" },
+                tooltip_delete: { en: "Delete", bn: "মুছুন", hi: "हटाएं" },
+                placeholder_comment: { en: "Comment...", bn: "মন্তব্য...", hi: "टिप्पणी..." },
+                button_post: { en: "Post", bn: "পোস্ট", hi: "पोस्ट करें" },
+                button_posting: { en: "Posting...", bn: "পোস্ট হচ্ছে...", hi: "पोस्ट हो रहा है..." },
+                error_comment: { en: "Comment error:", bn: "কমেন্ট সমস্যা:", hi: "टिप्पणी त्रुटि:" },
+                tooltip_reply: { en: "Reply", bn: "রিপ্লাই", hi: "उत्तर दें" },
+                placeholder_reply_to: { en: "Reply to {name}...", bn: "{name}-কে রিপ্লাই...", hi: "{name} को उत्तर दें..." },
+                button_reply: { en: "Reply", bn: "রিপ্লাই", hi: "उत्तर दें" },
+                button_replying: { en: "Replying...", bn: "রিপ্লাই হচ্ছে...", hi: "उत्तर दिया जा रहा है..." },
+                error_reply: { en: "Reply error:", bn: "রিপ্লাই সমস্যা:", hi: "उत्तर त्रुटि:" },
+                confirm_delete_comment: { en: "Delete comment?", bn: "মন্তব্য মুছবেন?", hi: "टिप्पणी हटाएं?" },
+                error_deleting: { en: "Delete error:", bn: "মুছতে সমস্যা:", hi: "हटाने में त्रुटि:" },
+                error_checking: { en: "Check error:", bn: "চেক সমস্যা:", hi: "जाँच त्रुटि:" },
+                confirm_delete_reply: { en: "Delete reply?", bn: "রিপ্লাই মুছবেন?", hi: "उत्तर हटाएं?" },
+                error_follow: { en: "Follow error:", bn: "ফলো সমস্যা:", hi: "फ़ॉलो त्रुटि:" },
+                error_name_length: { en: "Name must be at least 3 characters.", bn: "নাম কমপক্ষে ৩ অক্ষর।", hi: "नाम कम से कम 3 अक्षर का होना चाहिए।" },
+                success_name_changed: { en: "Name updated!", bn: "নাম পরিবর্তন হয়েছে!", hi: "नाम अपडेट किया गया!" },
+                error_name_change: { en: "Could not update name.", bn: "নাম পরিবর্তন সমস্যা।", hi: "नाम अपडेट नहीं किया जा सका।" },
+                alert_login_required: { en: "Please log in.", bn: "লগইন করুন।", hi: "कृपया लॉग इन करें।" },
+                error_login: { en: "Login Error.", bn: "লগইন সমস্যা।", hi: "लॉगিন त्रुटि।" },
+                error_logout: { en: "Logout Error.", bn: "লগআউট সমস্যা।", hi: "लॉगआउट त्रुटि।" },
+                alert_letter_empty: { en: "Letter cannot be empty!", bn: "চিঠি খালি!", hi: "पत्र खाली नहीं हो सकता!" },
+                alert_select_friends: { en: "Please select friends.", bn: "বন্ধু নির্বাচন করুন।", hi: "कृपया मित्र चुनें।" },
+                alert_letter_saved_sent: { en: "Letter saved/sent!", bn: "চিঠি সংরক্ষিত/পাঠানো!", hi: "पत्र सहेजा/भेजा गया!" },
+                alert_sent_to_friends: { en: "Letter sent to friends.", bn: "বন্ধুদের চিঠি পাঠানো হয়েছে।", hi: "पत्र मित्रों को भेजा गया।" },
+                error_sending_letter: { en: "Error saving/sending letter:", bn: "চিঠি সেভ/পাঠাতে ত্রুটি:", hi: "पत्र सहेजने/भेजने में त्रुटि:" },
+                alert_delete_own_only: { en: "Can only delete from 'My Letters'.", bn: "শুধুমাত্র 'আমার চিঠি' থেকে মোছা যাবে।", hi: "केवल 'मेरे पत्र' से हटाया जा सकता है।" },
+                confirm_delete_letter: { en: "Delete letter?", bn: "চিঠি মুছবেন?", hi: "पत्र हटाएं?" },
+                error_delete_letter: { en: "Error deleting letter:", bn: "মুছতে ত্রুটি:", hi: "पत्र हटाने में त्रुटि:" },
+                loading_profile: { en: "Loading profile...", bn: "প্রোফাইল লোড হচ্ছে...", hi: "प्रोफ़ाइल लोड हो रहा है..." },
+                loading_letters: { en: "Loading letters...", bn: "চিঠি লোড হচ্ছে...", hi: "पत्र लोड हो रहे हैं..." },
+                loading_comments: { en: "Loading comments...", bn: "মন্তব্য লোড হচ্ছে...", hi: "टिप्पणियां लोड हो रही हैं..." },
+                no_comments: { en: "No comments yet...", bn: "কোনো মন্তব্য নেই...", hi: "अभी तक कोई टिप्पणी नहीं..." },
+                button_reply_to_sender: { en: "Reply to Sender", bn: "প্রেরককে রিপ্লাই দিন", hi: "प्रेषक को उत्तर दें" },
+                alert_letter_not_found: { en: "Letter not found.", bn: "চিঠি পাওয়া যায়নি।", hi: "पत्र नहीं मिला।" },
+                link_copied: { en: "Link copied!", bn: "লিঙ্ক কপি!", hi: "लिंक कॉपी किया गया!" },
+                error_copying: { en: "Could not copy link.", bn: "কপি সমস্যা।", hi: "लिंक कॉपी नहीं किया जा सका।" },
+                share_title: { en: "From Chithi App", bn: "চিঠি অ্যাপ থেকে", hi: "चिट्ठी ऐप से" },
+                share_link_label: { en: "Link:", bn: "লিঙ্ক:", hi: "लिंक:" },
+                share_text_generic: { en: "Check out this letter from Chithi App:", bn: "চিঠি অ্যাপ থেকে এই চিঠিটি দেখুন:", hi: "चिट्ठी ऐप से यह पत्र देखें:" },
+                share_title_invite: { en: "Join me on Chithi App!", bn: "চিঠি অ্যাপে যোগ দিন!", hi: "चिट्ठी ऐप पर मुझसे जुड़ें!" },
+                share_text_invite: { en: "Let's share letters on Chithi App!", bn: "চিঠি অ্যাপ ব্যবহার করুন!", hi: "आइए चिट्ठी ऐप पर पत्र साझा करें!" },
+                default_username: { en: "User", bn: "ব্যবহারকারী", hi: "उपयोगकर्ता" },
+                unknown_author: { en: "Unknown Author", bn: "অজানা লেখক", hi: "अज्ञात लेखक" },
+                error_generic: { en: "Error", bn: "ত্রুটি", hi: "त्रुटि" },
+                dear_placeholder: { en: "Dear {name},\n\n", bn: "প্রিয় {name},\n\n", hi: "प्रिय {name},\n\n" },
+                leaderboard_heading: { en: "Leaderboard", bn: "লিডারবোর্ড", hi: "लीडरबोर्ड" },
+                leaderboard_rank: { en: "Rank", bn: "র‍্যাঙ্ক", hi: "रैंक" },
+                leaderboard_name: { en: "Name", bn: "নাম", hi: "नाम" },
+                leaderboard_followers: { en: "Followers", bn: "ফলোয়ার্স", hi: "फ़ॉलोअर्स" },
+                placeholder_leaderboard_loading: { en: "Loading leaderboard...", bn: "লিডারবোর্ড লোড হচ্ছে...", hi: "लीडरबोर्ड लोड हो रहा है..." },
+                placeholder_leaderboard_empty: { en: "Leaderboard is empty or unavailable.", bn: "লিডারবোর্ড খালি বা অনুপলব্ধ।", hi: "लीडरबोर्ड खाली या अनुपलब्ध है।" },
+                error_leaderboard_load: { en: "Could not load leaderboard.", bn: "লিডারবোর্ড লোড করা যায়নি।", hi: "लीडरबोर्ड लोड नहीं किया जा सका।" },
+                auth_invalid_email: { en: "Invalid email format.", bn: "ভুল ইমেইল ফরম্যাট।", hi: "अमान्य ईमेल प्रारूप।" },
+                auth_user_disabled: { en: "Account disabled.", bn: "অ্যাকাউন্ট নিষ্ক্রিয়।", hi: "खाता अक्षम कर दिया गया है।" },
+                auth_user_not_found: { en: "Email not found.", bn: "ইমেইল পাওয়া যায়নি।", hi: "ईमेल नहीं मिला।" },
+                auth_wrong_password: { en: "Incorrect password.", bn: "ভুল পাসওয়ার্ড।", hi: "गलत पासवर्ड।" },
+                auth_email_already_in_use: { en: "Email already in use.", bn: "ইমেইল ব্যবহৃত।", hi: "ईमेल पहले से उपयोग में है।" },
+                auth_weak_password: { en: "Password is too weak (min 6 characters).", bn: "দুর্বল পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)।", hi: "पासवर्ड बहुत कमजोर है (न्यूनतम 6 अक्षर)।" },
+                permission_denied: { en: "Permission denied (Check Database Rules).", bn: "অনুমতি নেই (ডাটাবেস নিয়ম চেক করুন)।", hi: "अनुमति अस्वीकृत (डेटाबेस नियम जांचें)।" },
+                missing_username: { en: "Please enter a display name.", bn: "একটি প্রদর্শিত নাম দিন।", hi: "कृपया एक प्रदर्शित नाम दर्ज करें।" },
+                unknown_error: { en: "An unknown error occurred.", bn: "একটি অজানা ত্রুটি ঘটেছে।", hi: "एक अज्ञात त्रुटि हुई।" },
+                email_required_for_reset: { en: "Please enter your email first.", bn: "অনুগ্রহ করে প্রথমে আপনার ইমেইল লিখুন।", hi: "कृपया पहले अपना ईमेल दर्ज करें।" },
+                reset_email_sent: { en: "Password reset email sent!", bn: "পাসওয়ার্ড রিসেট ইমেইল পাঠানো হয়েছে!", hi: "पासवर्ड रीसेट ईमेल भेजा गया!" },
+                reset_email_failed: { en: "Failed to send reset email.", bn: "রিসেট ইমেইল পাঠাতে ব্যর্থ।", hi: "रीसेट ईमेल भेजने में विफल।" },
+                inbox_from_label: { en: "From:", bn: "প্রেরক:", hi: "प्रेषक:" },
+                search_heading: { en: "Search Users", bn: "ব্যবহারকারী খুঁজুন", hi: "उपयोगकर्ता खोजें" },
+                placeholder_search_users: { en: "Search by name...", bn: "নাম দিয়ে খুঁজুন...", hi: "नाम से खोजें..." },
+                button_view_profile: { en: "View", bn: "দেখুন", hi: "देखें" },
+                placeholder_search_no_results: { en: "No users found.", bn: "কোনো ব্যবহারকারী পাওয়া যায়নি।", hi: "कोई उपयोगकर्ता नहीं मिला।" },
+                placeholder_search_prompt: { en: "Enter at least 2 characters to search.", bn: "খুঁজতে কমপক্ষে ২ অক্ষর লিখুন।", hi: "खोजने के लिए कम से कम 2 अक्षर दर्ज करें।" },
+                error_search_failed: { en: "Search failed.", bn: "অনুসন্ধান ব্যর্থ।", hi: "खोज विफल।" },
+            };
+            let currentLanguage = localStorage.getItem('chithiAppLanguage') || 'bn';
+
+            // Firebase Config
+            const firebaseConfig = {
+                apiKey: "AIzaSyAvpOvEPC0QLrS5Xc1kKNQGPjDBpQaa5EA",
+                authDomain: "wallpaper-21d34.firebaseapp.com",
+                databaseURL: "https://wallpaper-21d34-default-rtdb.firebaseio.com",
+                projectId: "wallpaper-21d34",
+                storageBucket: "wallpaper-21d34.appspot.com",
+                messagingSenderId: "758647644711",
+                appId: "1:758647644711:android:03570c90d948d09b1d2402"
+            };
+
+            let app, auth, database;
+            try {
+                 if (!firebase.apps.length) { app = firebase.initializeApp(firebaseConfig); }
+                 else { app = firebase.app(); }
+                auth = firebase.auth();
+                database = firebase.database();
+                console.log("Firebase ইনিশিয়ালাইজড।");
+            } catch (e) {
+                console.error("Firebase Init Error:", e);
+                alert(`অ্যাপ ইনিশিয়ালাইজেশন ত্রুটি: ${e.message}.`);
+                document.body.innerHTML = `<h1 style="color:red;text-align:center;">ইনিশিয়ালাইজেশন ত্রুটি!</h1>`;
+                return;
+            }
+
+            // --- Element Selectors ---
+            const getEl = (id) => document.getElementById(id);
+            const loadingIndicator = getEl('loading-indicator');
+            const authContainer = getEl('auth-container'); const loginForm = getEl('login-form'); const signupForm = getEl('signup-form'); const showSignupBtn = getEl('show-signup'); const showLoginBtn = getEl('show-login'); const loginEmailInput = getEl('login-email'); const loginPasswordInput = getEl('login-password'); const signupNameInput = getEl('signup-name'); const signupEmailInput = getEl('signup-email'); const signupPasswordInput = getEl('signup-password'); const loginErrorMsg = getEl('login-error'); const signupErrorMsg = getEl('signup-error'); const forgotPasswordBtn = getEl('forgot-password-btn'); const resetMessageDisplay = getEl('reset-message');
+            const appContainer = getEl('app-container'); const userInfo = getEl('user-info'); const userDisplayName = getEl('user-display-name'); const logoutBtn = getEl('logout-btn');
+            const feedSection = getEl('feed-section'); const searchSection = getEl('search-section'); const inboxSection = getEl('inbox-section'); const writeSection = getEl('write-section'); const profileSection = getEl('profile-section'); const profileViewSection = getEl('profile-view-section'); const settingsSection = getEl('settings-section'); const leaderboardSection = getEl('leaderboard-section');
+            const allSections = [feedSection, searchSection, inboxSection, writeSection, profileSection, profileViewSection, settingsSection, leaderboardSection].filter(Boolean);
+            const navFeedBtn = getEl('nav-feed-btn'); const navSearchBtn = getEl('nav-search-btn'); const navInboxBtn = getEl('nav-inbox-btn'); const navWriteBtn = getEl('nav-write-btn'); const navProfileBtn = getEl('nav-profile-btn'); const navSettingsBtn = getEl('nav-settings-btn');
+            const allNavButtons = [navFeedBtn, navSearchBtn, navInboxBtn, navWriteBtn, navProfileBtn, navSettingsBtn].filter(Boolean);
+            const inboxNotificationBadge = getEl('inbox-notification-badge');
+            const letterForm = getEl('letter-form'); const letterContent = getEl('letter-content'); const friendSelectContainer = getEl('friend-select-container'); const openFriendSelectModalBtn = getEl('open-friend-select-modal-btn'); const selectedFriendCountSpan = getEl('selected-friend-count'); const submitLetterBtn = getEl('submit-letter-btn');
+            const friendSelectModal = getEl('friend-select-modal'); const friendSelectList = getEl('friend-select-list'); const friendSelectCloseBtn = getEl('friend-select-close-btn'); const confirmFriendSelectBtn = getEl('confirm-friend-select-btn'); const modalSelectedCountSpan = getEl('modal-selected-count');
+            const feedContent = getEl('feed-content');
+            const inboxList = getEl('inbox-list'); const inboxInviteBtn = getEl('inbox-invite-btn');
+            const profileTabMyLettersBtn = getEl('profile-tab-myletters'); const profileTabBookmarksBtn = getEl('profile-tab-bookmarks'); const profileTabFollowingBtn = getEl('profile-tab-following'); const myLettersContent = getEl('my-letters-content'); const bookmarksContent = getEl('bookmarks-content'); const followingContent = getEl('following-content'); const letterArchive = getEl('letter-archive'); const bookmarkArchive = getEl('bookmark-archive'); const followingList = getEl('following-list'); const profileViewName = getEl('profile-view-name'); const profileViewEmail = getEl('profile-view-email'); const followerCountDiv = getEl('follower-count'); const followingCountDiv = getEl('following-count');
+            const addUidInput = getEl('add-uid-input'); const addUidButton = getEl('add-uid-button'); const addUidMessage = getEl('add-uid-message');
+            const otherProfileViewName = getEl('other-profile-view-name'); const otherProfileViewEmail = getEl('other-profile-view-email'); const otherFollowerCountDiv = getEl('other-follower-count'); const otherFollowingCountDiv = getEl('other-following-count'); const profileActionArea = getEl('profile-action-area'); const otherProfileLettersList = getEl('other-profile-letters-list'); const profileViewBackBtn = getEl('profile-view-back-btn');
+            const settingsForm = getEl('settings-form'); const settingsDisplayNameInput = getEl('settings-display-name'); const settingsSuccessMsg = getEl('settings-success-msg'); const languageSelect = getEl('language-select'); const goToLeaderboardBtn = getEl('go-to-leaderboard-btn');
+            const userUidDisplay = getEl('user-uid-display'); const copyUidBtn = getEl('copy-uid-btn');
+            const leaderboardList = getEl('leaderboard-list'); const leaderboardBackBtn = getEl('leaderboard-back-btn');
+            const letterViewerModal = getEl('letter-viewer'); const letterViewerContentWrapper = getEl('letter-viewer-content-wrapper'); const letterViewerContent = getEl('letter-viewer-content'); const letterViewerMeta = getEl('letter-viewer-meta'); const letterViewerSender = getEl('letter-viewer-sender'); const letterViewerTime = getEl('letter-viewer-time'); const letterViewerActions = getEl('letter-viewer-actions'); const letterViewerCloseBtn = getEl('letter-viewer-close-btn');
+            const userSearchInput = getEl('user-search-input');
+            const searchResultsList = getEl('search-results-list');
+            const feedHeadingClickable = getEl('feed-heading-clickable');
+            const currentFeedSortIndicator = getEl('current-feed-sort-indicator');
+
+
+            // --- Ad Code Configuration ---
+            const AD_OPTIONS = {
+                key: '59c0d54698e6fabf4d1e1a8bbe8c7c54',
+                format: 'iframe',
+                height: 50,
+                width: 320,
+                params: {}
+            };
+            const AD_INVOKE_JS_SRC = "//www.highperformanceformat.com/59c0d54698e6fabf4d1e1a8bbe8c7c54/invoke.js";
+
+
+            // --- State Variables ---
+            const getPlaceholder = (key) => `<p class="notice-text">${translate(key)}</p>`;
+            let currentUser = null; let userProfile = null; let userLettersData = {}; let userBookmarkIds = new Set(); let allPublicLettersData = {}; let sharedLettersData = {}; let userFollowingData = {}; let userFollowingProfiles = {}; let userFollowerIds = new Set(); let userProfilesCache = {}; let commentListeners = {}; let selectedFriendsForSending = new Set(); let userInboxData = {}; let currentView = 'login'; let viewingProfileUid = null; let activeListeners = {};
+            const feedSortCycleForHeadingClick = ['timestamp', 'likeCount', 'random'];
+            let currentFeedSortCycleIndex = 0;
+            let lastFeedSortMethodApplied = 'timestamp';
+            let searchTimeoutId = null;
+            let lettersSinceLastAd = 0;
+            let nextAdAfter = Math.floor(Math.random() * 6) + 10;
+
+            // --- Utility Functions ---
+            const showLoading = (show) => {if(loadingIndicator) loadingIndicator.classList.toggle('hidden', !show);};
+            function translate(key, replacements = {}) { const lang = currentLanguage || 'bn'; let text = translations[key]?.[lang] ?? translations[key]?.['en'] ?? `[${key}]`; for (const placeholder in replacements) { const regex = new RegExp(`\\{${placeholder}\\}`, 'g'); text = text.replace(regex, replacements[placeholder]); } return text; }
+            function setLanguage(langCode) { console.log(`ভাষা পরিবর্তন করা হচ্ছে: ${langCode}`); currentLanguage = langCode; localStorage.setItem('chithiAppLanguage', langCode); document.documentElement.lang = langCode; document.title = translate('app_title'); document.querySelectorAll('[data-translate-key]').forEach(el => { const key = el.dataset.translateKey; const translatedText = translate(key); if ((el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') && el.placeholder) { el.placeholder = translatedText; } else if (el.title && translations[key]) { el.title = translatedText; } else { let targetElement = el; const specificSpan = el.querySelector('span:not([class]):not([id])'); if (specificSpan && specificSpan.parentElement === el) { targetElement = specificSpan; } else if (el.childNodes.length > 0) { let foundTextNode = false; for (let i = 0; i < el.childNodes.length; i++) { if (el.childNodes[i].nodeType === Node.TEXT_NODE && el.childNodes[i].textContent.trim() !== '') { targetElement = el.childNodes[i]; foundTextNode = true; break; } } if (!foundTextNode) { const genericSpan = el.querySelector('span'); if(genericSpan && genericSpan.parentElement === el) targetElement = genericSpan; } } if (targetElement) { if (targetElement.nodeType === Node.TEXT_NODE) { targetElement.nodeValue = translatedText; } else { targetElement.textContent = translatedText; } } } }); handlePrivacyChange(); if (languageSelect) languageSelect.value = langCode; updateFeedSortIndicator(lastFeedSortMethodApplied); if (currentUser) { displayLetters(); displayFeedContent(); displayBookmarks(); displayInbox(); displayFollowingList(); updateFriendSelectModalOptions(); if (currentView === 'search-section' && userSearchInput) { performUserSearch(userSearchInput.value.trim()); } if (viewingProfileUid && currentView === 'profile-view-section') { viewUserProfile(viewingProfileUid); } if (currentView === 'leaderboard-section') { loadLeaderboardData(); } } else { setInitialPlaceholders(); } const updateFollowLabel = (divElement, labelKey) => { if (divElement) { const labelSpan = divElement.querySelector('span[data-translate-key]'); if (labelSpan) labelSpan.textContent = translate(labelKey); } }; updateFollowLabel(followerCountDiv, 'followers_label'); updateFollowLabel(followingCountDiv, 'following_label'); updateFollowLabel(otherFollowerCountDiv, 'followers_label'); updateFollowLabel(otherFollowingCountDiv, 'following_label'); }
+            const showAuthMessage = (type, elId, code) => { const el = getEl(elId); if (el) { el.textContent = mapFirebaseError(code || 'unknown_error'); el.style.display = 'block'; el.className = type === 'error' ? 'error-message' : 'success-message'; if (elId === 'login-error') clearResetMessage(); if (elId === 'reset-message') clearAuthErrors('login'); } };
+            const clearAuthErrors = (type = null) => { if(type==='login'||type===null) { const el=getEl('login-error'); if(el){el.textContent=''; el.style.display='none';} } if(type==='signup'||type===null) { const el=getEl('signup-error'); if(el){el.textContent=''; el.style.display='none';} }};
+            const clearResetMessage = () => { const el=getEl('reset-message'); if(el){el.textContent=''; el.style.display='none';} };
+            const mapFirebaseError = (code) => { console.warn("Firebase ত্রুটি:", code); const errorKey = code?.replace(/[\/\-]/g, '_').toLowerCase(); const knownKeys = [ 'auth_invalid_email', 'auth_user_disabled', 'auth_user_not_found', 'auth_wrong_password', 'auth_email_already_in_use', 'auth_weak_password', 'permission_denied', 'missing_username', 'email_required_for_reset', 'reset_email_sent', 'reset_email_failed' ]; if (knownKeys.includes(errorKey)) { return translate(errorKey); } return `${translate('unknown_error')} (${code || 'N/A'})`; };
+            const showModal = (el) => el?.classList.add('show');
+            const hideModal = (el) => el?.classList.remove('show');
+            const getLocale = () => { switch(currentLanguage) { case 'bn': return 'bn-BD'; case 'hi': return 'hi-IN'; default: return 'en-US'; } };
+            const formatTimestamp = (ts) => { const locale = getLocale(); try { return ts ? new Date(ts).toLocaleString(locale, {day:'numeric',month:'short',year:'numeric',hour:'numeric',minute:'2-digit',hour12:true}) : '?'; } catch(e){return '?';}};
+            const formatShortTime = (ts) => { const locale = getLocale(); try { return ts ? new Date(ts).toLocaleString(locale, {day:'numeric',month:'short',hour:'numeric',minute:'2-digit'}) : ''; } catch(e){return '';}};
+            const sanitizeHTML = (str) => { const temp=document.createElement('div'); temp.textContent=str||''; return temp.innerHTML; };
+
+            function updateFeedSortIndicator(sortMethodKey) {
+                if (!currentFeedSortIndicator) return;
+                let indicatorTextKey;
+                switch (sortMethodKey) {
+                    case 'timestamp': indicatorTextKey = 'sort_indicator_timestamp'; break;
+                    case 'likeCount': indicatorTextKey = 'sort_indicator_likes'; break;
+                    case 'random_display': indicatorTextKey = 'sort_indicator_random_display'; break;
+                    case 'random':    indicatorTextKey = 'sort_indicator_pure_random'; break;
+                    default:          indicatorTextKey = ''; break;
+                }
+                currentFeedSortIndicator.textContent = indicatorTextKey ? translate(indicatorTextKey) : '';
+            }
+
+            // --- View Management (ভিউ ম্যানেজমেন্ট) ---
+            function setActiveView(viewId) {
+                 console.log("বর্তমান ভিউ:", viewId);
+                 currentView=viewId;
+                 allSections.forEach(s=>{if(s)s.classList.toggle('hidden',s.id!==viewId);});
+                 allNavButtons.forEach(b=>{
+                     let a=false;
+                     if(viewId==='feed-section'&&b?.id==='nav-feed-btn')a=true;
+                     else if(viewId==='search-section'&&b?.id==='nav-search-btn')a=true;
+                     else if(viewId==='inbox-section'&&b?.id==='nav-inbox-btn')a=true;
+                     else if(viewId==='write-section'&&b?.id==='nav-write-btn')a=true;
+                     else if((viewId==='profile-section'||viewId==='profile-view-section')&&b?.id==='nav-profile-btn')a=true;
+                     else if((viewId==='settings-section'||viewId==='leaderboard-section')&&b?.id==='nav-settings-btn')a=true;
+                     if(b)b.classList.toggle('active',a);
+                 });
+                 if(viewId !== 'search-section' && searchResultsList) {
+                     searchResultsList.innerHTML = '';
+                     if(userSearchInput) userSearchInput.value = '';
+                 }
+                 if(viewId === 'search-section') {
+                     if(userSearchInput) userSearchInput.focus();
+                     if(searchResultsList && (!userSearchInput || !userSearchInput.value.trim())){
+                          searchResultsList.innerHTML = getPlaceholder('placeholder_search_prompt');
+                     }
+                 }
+                 if(viewId !== 'profile-section' && addUidMessage) { setAddUidMessage(''); }
+                 else if (viewId === 'profile-section' && followingContent && !followingContent.classList.contains('hidden') && addUidMessage) { setAddUidMessage(''); }
+                 if(viewId !== 'profile-view-section') { viewingProfileUid = null; }
+                 window.scrollTo(0,0);
+            }
+
+
+            // --- Listener Cleanup (লিসেনার পরিষ্কার করা) ---
+            function cleanupListener(type) { if(activeListeners[type]?.ref && activeListeners[type]?.listener){try{activeListeners[type].ref.off('value',activeListeners[type].listener);console.log(`পরিষ্কার করা হয়েছে: ${type}`);}catch(e){console.warn(`ডিটাচ ত্রুটি ${type}:`, e);}} delete activeListeners[type]; }
+            function cleanupAllListeners() { console.log("লিসেনার পরিষ্কার করা হচ্ছে..."); Object.keys(activeListeners).forEach(cleanupListener); cleanupAllCommentListeners(); activeListeners = {}; }
+            function cleanupAllCommentListeners() { console.log("কমেন্ট পরিষ্কার করা হচ্ছে..."); Object.values(commentListeners).forEach(l=>{try{if(l && l.ref && l.listener) l.ref.off('value',l.listener);}catch(e){console.warn("কমেন্ট লিসেনার ডিটাচ করতে ত্রুটি:", e)}}); commentListeners={}; }
+
+            // --- Comment Listener Management (কমেন্ট লিসেনার ম্যানেজমেন্ট) ---
+            function attachCommentListener(letterId, ownerUid, letterType = 'users') { return new Promise((resolve, reject) => { if (!database || !letterId || !ownerUid) {resolve(); return;} let basePath; if (letterType === 'shared') basePath = `shared_letters/${letterId}/comments`; else basePath = `users/${ownerUid}/letters/${letterId}/comments`; if (commentListeners[letterId]) { try { commentListeners[letterId].ref.off('value', commentListeners[letterId].listener); } catch(e) {console.warn("আগের কমেন্ট লিসেনার সরাতে ত্রুটি:", e)} } const ref = database.ref(basePath); const listener = ref.orderByChild('timestamp').on('value', (snapshot) => { const commentsData = snapshot.val() || {}; const targetLetter = userLettersData[letterId] || allPublicLettersData[letterId] || sharedLettersData[letterId]; if (targetLetter) targetLetter.comments = commentsData; const letterEl = document.querySelector(`.letter-item[data-letter-id="${letterId}"]`); if (letterEl) { const countEl = letterEl.querySelector('.comment-btn .action-count'); if(countEl) countEl.textContent = Object.keys(commentsData).length; const listEl = letterEl.querySelector('.comments-list'); const sectionEl = letterEl.querySelector('.comments-section'); if (listEl && sectionEl && !sectionEl.classList.contains('hidden')) { renderComments(letterId, ownerUid, commentsData, listEl, letterType); } else if (listEl) listEl.dataset.needsRefresh = 'true'; } resolve(); }, (error) => { console.error(`কমেন্ট লিসেনার ত্রুটি ${letterId} (${basePath}):`, error); if(commentListeners[letterId]) delete commentListeners[letterId]; reject(error); }); commentListeners[letterId] = { ref: ref, listener: listener }; }); }
+
+            // --- User Profile Management (ইউজার প্রোফাইল ম্যানেজমেন্ট - searchName সরানো হয়েছে) ---
+            async function fetchOrCreateProfile(uid, email, authName) {
+                if(!database || !uid) throw new Error("প্রোফাইল তৈরি/আনতে ডেটাবেস/ইউআইডি অনুপস্থিত");
+                const ref = database.ref(`user_profiles/${uid}`);
+                try {
+                    const s = await ref.get();
+                    if(s.exists()){
+                        const d = s.val();
+                        d.name = d.name || email?.split('@')[0] || translate('default_username');
+                        d.followerCount = d.followerCount || 0;
+                        cacheUserProfile(uid, d.email, d.name, d.followerCount);
+                        return d;
+                    } else {
+                        const name = authName || email?.split('@')[0] || `${translate('default_username')}_${uid.substring(0,4)}`;
+                        const profileData = {
+                            email: email,
+                            name: name,
+                            joinDate: firebase.database.ServerValue.TIMESTAMP,
+                            followerCount: 0
+                        };
+                        await ref.set(profileData);
+                        cacheUserProfile(uid, email, name, 0);
+                        return profileData;
+                    }
+                } catch(e){
+                    console.error("প্রোফাইল তৈরি/আনতে ত্রুটি:", e);
+                    throw e;
+                }
+            }
+            async function saveUserProfile(uid, email, name) {
+                if (!database || !uid || !name) return false;
+                const ref = database.ref(`user_profiles/${uid}`);
+                try {
+                    const updates = { name: name };
+                    await ref.update(updates);
+                    const currentProfile = userProfilesCache[uid] || {};
+                    cacheUserProfile(uid, email, name, currentProfile.followerCount);
+                    if(currentUser?.uid === uid){
+                        if(userDisplayName) userDisplayName.textContent = name;
+                        if(profileViewName) profileViewName.textContent = name;
+                    }
+                    return true;
+                } catch(e){
+                    console.error("প্রোফাইল আপডেট করতে ত্রুটি:", e);
+                    return false;
+                }
+            }
+            async function getUserProfile(uid) { if (!database||!uid) return {name:translate('unknown_author'),email:'', followerCount: 0}; if(userProfilesCache[uid]) return userProfilesCache[uid]; console.log("ক্যাশে পাওয়া যায়নি:",uid); try{ const s=await database.ref(`user_profiles/${uid}`).get(); if(s.exists()){ const d=s.val();const p={name:d.name||d.email?.split('@')[0]||translate('unknown_author'), email:d.email||'', followerCount: d.followerCount || 0}; userProfilesCache[uid]=p; return p; } else { const p={name:translate('unknown_author'),email:'', followerCount: 0}; userProfilesCache[uid]=p; return p;} }catch(e){console.error("প্রোফাইল আনতে ত্রুটি:",uid,e); return {name:translate('error_generic'),email:'', followerCount: 0};} }
+            function cacheUserProfile(uid, email, name = null, count = 0) { if(uid) userProfilesCache[uid] = {email:email||'', name:name||email?.split('@')[0]||translate('default_username'), followerCount: count || 0}; }
+
+            // --- Function to show a specific letter by ID (URL হ্যান্ডলিং এর জন্য) ---
+            async function showLetterFromUrl(letterIdToView) {
+                if (!letterIdToView || !database) {
+                    console.warn("URL থেকে চিঠি দেখানোর জন্য চিঠি আইডি বা ডেটাবেস নেই।");
+                    return false;
+                }
+                showLoading(true);
+                console.log(`URL থেকে চিঠি দেখানোর চেষ্টা: ${letterIdToView}`);
+
+                let letterData = null;
+                let ownerUid = null;
+                let letterType = 'users';
+
+                try {
+                    const publicLetterRef = database.ref(`public_letters/${letterIdToView}`);
+                    const publicSnapshot = await publicLetterRef.get();
+                    if (publicSnapshot.exists()) {
+                        ownerUid = publicSnapshot.val().ownerUid;
+                        letterType = 'users';
+                        console.log(`Letter ${letterIdToView} public_letters index এ পাওয়া গেছে। মালিক: ${ownerUid}`);
+                    }
+                } catch (e) { console.warn(`${letterIdToView} এর জন্য public_letters চেক করতে ত্রুটি:`, e); }
+
+                if (!ownerUid && currentUser) {
+                    const inboxEntry = Object.values(userInboxData).find(item => item.letterId === letterIdToView && item.senderUid);
+                    if (inboxEntry) {
+                        ownerUid = inboxEntry.senderUid;
+                        letterType = 'shared';
+                        console.log(`চিঠি ${letterIdToView} ইনবক্সের মাধ্যমে পাওয়া গেছে। প্রেরক/মালিক: ${ownerUid}`);
+                    }
+                }
+
+                if (!ownerUid && currentUser && userLettersData[letterIdToView]) {
+                    if (userLettersData[letterIdToView].ownerUid === currentUser.uid) {
+                        ownerUid = currentUser.uid;
+                        letterType = 'users';
+                        console.log(`চিঠি ${letterIdToView} বর্তমান ইউজারের নিজের চিঠি।`);
+                    }
+                }
+
+                if (!ownerUid) {
+                    console.warn(`URL থেকে ${letterIdToView} চিঠির মালিক নির্ধারণ করা যায়নি।`);
+                    alert(translate('alert_letter_not_found'));
+                    showLoading(false);
+                    return false;
+                }
+
+                letterData = await getFullLetterData(letterIdToView, ownerUid, letterType);
+
+                if (letterData) {
+                    console.log("URL এর জন্য আনা চিঠির ডেটা:", letterData);
+                    if (letterType === 'users' && letterData.privacy !== 'private' && (!currentUser || letterData.ownerUid !== currentUser.uid)) {
+                        await attachCommentListener(letterIdToView, letterData.ownerUid, 'users');
+                    }
+                    await showLetterInViewer(letterData, letterType === 'shared');
+                    showLoading(false);
+                    return true;
+                } else {
+                    alert(translate('alert_letter_not_found'));
+                    showLoading(false);
+                    return false;
+                }
+            }
+
+
+            // --- Authentication Main Logic (অথেন্টিকেশন প্রধান লজিক) ---
+            if (auth && database) {
+                 auth.onAuthStateChanged(async (user) => {
+                    console.log("অথ স্টেট:", user?.uid);
+
+                    if (user) {
+                        if (currentUser?.uid === user.uid && appContainer && !appContainer.classList.contains('hidden')) {
+                             setLanguage(currentLanguage);
+                             const urlParams = new URLSearchParams(window.location.search);
+                             const letterIdFromUrl = urlParams.get('letter');
+                             if (letterIdFromUrl && !letterViewerModal.classList.contains('show')) {
+                                 await showLetterFromUrl(letterIdFromUrl);
+                             }
+                             showLoading(false);
+                             return;
+                        }
+                        currentUser = user;
+                        try {
+                            userProfile = await fetchOrCreateProfile(user.uid, user.email, user.displayName);
+                            if(userDisplayName)userDisplayName.textContent = userProfile.name;
+                            if(profileViewName)profileViewName.textContent = userProfile.name;
+                            if(profileViewEmail)profileViewEmail.textContent = userProfile.email;
+                            if(settingsDisplayNameInput)settingsDisplayNameInput.value = userProfile.name;
+                            if(userUidDisplay) userUidDisplay.textContent = currentUser.uid;
+                            if(userInfo) userInfo.classList.remove('hidden');
+                            clearAuthErrors(); clearResetMessage();
+
+                            if(authContainer) authContainer.classList.add('hidden');
+                            if(appContainer) appContainer.classList.remove('hidden');
+
+                            currentFeedSortCycleIndex = feedSortCycleForHeadingClick.indexOf(lastFeedSortMethodApplied);
+                            if(currentFeedSortCycleIndex === -1) currentFeedSortCycleIndex = 0;
+
+                            await loadAllUserData(user.uid);
+                            setLanguage(currentLanguage);
+
+                            const urlParams = new URLSearchParams(window.location.search);
+                            const letterIdFromUrl = urlParams.get('letter');
+
+                            if (letterIdFromUrl) {
+                                const shown = await showLetterFromUrl(letterIdFromUrl);
+                                if (!shown) {
+                                    setActiveView('feed-section');
+                                }
+                                // history.replaceState(null, '', window.location.pathname);
+                            } else {
+                                setActiveView('feed-section');
+                            }
+
+                        } catch (e) {
+                            console.error("লগইন/সেটআপ ত্রুটি:", e);
+                            alert(translate('error_login'));
+                            try { await auth.signOut(); } catch(signOutErr) {}
+                            if(appContainer) appContainer.classList.add('hidden');
+                            if(authContainer) authContainer.classList.remove('hidden');
+                            currentUser = null; userProfile = null;
+                            cleanupAllListeners();
+                        } finally {
+                             showLoading(false);
+                        }
+                    } else { // ইউজার সাইন আউট করা আছে
+                        if (!currentUser && authContainer && !authContainer.classList.contains('hidden')) {
+                             setLanguage(currentLanguage);
+                             showLoading(false);
+                             return;
+                        }
+                        currentUser = null; userProfile = null;
+                        cleanupAllListeners();
+                        userLettersData = {}; userBookmarkIds = new Set(); allPublicLettersData = {}; sharedLettersData = {}; userFollowingData = {}; userFollowingProfiles = {}; userFollowerIds = new Set(); userProfilesCache = {}; commentListeners = {}; selectedFriendsForSending = new Set(); userInboxData = {}; currentView = 'login'; viewingProfileUid = null;
+                        currentFeedSortCycleIndex = 0;
+                        lastFeedSortMethodApplied = 'timestamp';
+
+
+                        if(userInfo) userInfo.classList.add('hidden');
+                        if(userDisplayName)userDisplayName.textContent = '';
+                        if(userUidDisplay) userUidDisplay.textContent = '';
+                        if(appContainer) appContainer.classList.add('hidden');
+                        if(authContainer) authContainer.classList.remove('hidden');
+
+                        setInitialPlaceholders();
+                        updateInboxBadge(0);
+                        if(loginForm) loginForm.reset(); if(signupForm) signupForm.reset();
+                        if(signupForm) signupForm.classList.add('hidden'); if(loginForm) loginForm.classList.remove('hidden');
+                        hideModal(friendSelectModal); hideModal(letterViewerModal);
+                        setLanguage(currentLanguage);
+
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const letterIdFromUrl = urlParams.get('letter');
+                        if (letterIdFromUrl) {
+                            await showLetterFromUrl(letterIdFromUrl);
+                            // history.replaceState(null, '', window.location.pathname);
+                        }
+                        showLoading(false);
+                    }
+                });
+
+                // --- Auth Form Listeners (অথ ফর্ম লিসেনার) ---
+                loginForm?.addEventListener('submit', (e) => {e.preventDefault();if(!auth)return;showLoading(true);const em=loginEmailInput.value;const pw=loginPasswordInput.value;auth.signInWithEmailAndPassword(em,pw).catch(err=>showAuthMessage('error','login-error',err.code)).finally(()=>showLoading(false));});
+                signupForm?.addEventListener('submit', (e) => {e.preventDefault();if(!auth)return;const name=signupNameInput.value.trim();const em=signupEmailInput.value;const pw=signupPasswordInput.value;if(!name){showAuthMessage('error','signup-error','missing_username');return;}showLoading(true);auth.createUserWithEmailAndPassword(em,pw).then(async(uc)=>{try{if(uc.user) await uc.user.updateProfile({displayName:name});}catch(e){console.warn("অথ প্রোফাইল আপডেট করতে ত্রুটি",e)} if(uc.user) await fetchOrCreateProfile(uc.user.uid,em,name); }).catch(err=>showAuthMessage('error','signup-error',err.code)).finally(()=>showLoading(false));});
+                logoutBtn?.addEventListener('click', () => {if(!auth)return;showLoading(true);auth.signOut().catch(err=>{alert(translate('error_logout'));showLoading(false);});});
+                forgotPasswordBtn?.addEventListener('click', () => {if(!auth)return;const em=loginEmailInput.value.trim();if(!em){showAuthMessage('error','login-error','email_required_for_reset');return;}showLoading(true);auth.sendPasswordResetEmail(em).then(()=>showAuthMessage('success','reset-message','reset_email_sent')).catch(err=>showAuthMessage('error','login-error',err.code||'reset_email_failed')).finally(()=>showLoading(false));});
+                showSignupBtn?.addEventListener('click', () => { clearAuthErrors();clearResetMessage();loginForm?.classList.add('hidden');signupForm?.classList.remove('hidden');signupNameInput?.focus(); });
+                showLoginBtn?.addEventListener('click', () => { clearAuthErrors();clearResetMessage();signupForm?.classList.add('hidden');loginForm?.classList.remove('hidden');loginEmailInput?.focus(); });
+            } else { console.error("Firebase auth/database উপলব্ধ নেই!"); showLoading(false); }
+
+            // --- Navigation & View Management Listeners (নেভিগেশন এবং ভিউ ম্যানেজমেন্ট লিসেনার) ---
+            navFeedBtn?.addEventListener('click', () => { setActiveView('feed-section'); if (currentUser) { loadPublicLettersIndex(); } });
+            navSearchBtn?.addEventListener('click', () => setActiveView('search-section'));
+            navInboxBtn?.addEventListener('click', () => { setActiveView('inbox-section'); markInboxAsRead(); });
+            navWriteBtn?.addEventListener('click', () => setActiveView('write-section'));
+            navProfileBtn?.addEventListener('click', () => { setActiveView('profile-section'); setActiveProfileTab('myletters'); });
+            navSettingsBtn?.addEventListener('click', () => setActiveView('settings-section'));
+            userDisplayName?.addEventListener('click', () => { setActiveView('profile-section'); setActiveProfileTab('myletters'); });
+            profileViewBackBtn?.addEventListener('click', () => { const previousView = history.state?.previousView || 'feed-section'; setActiveView(previousView); });
+            leaderboardBackBtn?.addEventListener('click', () => setActiveView('settings-section'));
+            goToLeaderboardBtn?.addEventListener('click', () => { setActiveView('leaderboard-section'); loadLeaderboardData(); });
+
+            feedHeadingClickable?.addEventListener('click', () => {
+                if (!currentUser || feedSection.classList.contains('hidden')) return;
+                currentFeedSortCycleIndex = (currentFeedSortCycleIndex + 1) % feedSortCycleForHeadingClick.length;
+                const newSortOverride = feedSortCycleForHeadingClick[currentFeedSortCycleIndex];
+                console.log("ফিড হেডিং ক্লিক করা হয়েছে, নতুন সর্ট ওভাররাইড:", newSortOverride);
+                showLoading(true);
+                loadPublicLettersIndex(newSortOverride).finally(() => showLoading(false));
+            });
+
+
+            function setActiveProfileTab(tabType) {
+                const isMy=tabType==='myletters',isBm=tabType==='bookmarks',isFw=tabType==='following';
+                myLettersContent?.classList.toggle('hidden',!isMy);
+                bookmarksContent?.classList.toggle('hidden',!isBm);
+                followingContent?.classList.toggle('hidden',!isFw);
+                profileTabMyLettersBtn?.classList.toggle('active',isMy);
+                profileTabBookmarksBtn?.classList.toggle('active',isBm);
+                profileTabFollowingBtn?.classList.toggle('active',isFw);
+                if(isBm) displayBookmarks();
+                else if(isFw) displayFollowingList();
+                else if(isMy) displayLetters();
+                if (addUidMessage) setAddUidMessage('');
+            }
+            profileTabMyLettersBtn?.addEventListener('click', () => setActiveProfileTab('myletters'));
+            profileTabBookmarksBtn?.addEventListener('click', () => setActiveProfileTab('bookmarks'));
+            profileTabFollowingBtn?.addEventListener('click', () => setActiveProfileTab('following'));
+
+            // --- Modal Handling (মোডাল হ্যান্ডলিং) ---
+            friendSelectCloseBtn?.addEventListener('click', () => hideModal(friendSelectModal));
+            letterViewerCloseBtn?.addEventListener('click', () => hideModal(letterViewerModal));
+            window.addEventListener('click', (event)=>{if(event.target==friendSelectModal)hideModal(friendSelectModal);if(event.target==letterViewerModal)hideModal(letterViewerModal);});
+
+            // --- Settings (সেটিংস) ---
+            settingsForm?.addEventListener('submit', async (e)=>{ e.preventDefault(); if(!currentUser||!database)return; const name=settingsDisplayNameInput.value.trim(); if(!name||name.length<3){alert(translate("error_name_length"));return;} showLoading(true);settingsSuccessMsg.style.display='none'; const success = await saveUserProfile(currentUser.uid,currentUser.email,name); showLoading(false); if(success){settingsSuccessMsg.textContent=translate("success_name_changed");settingsSuccessMsg.style.display='block';} else {alert(translate("error_name_change"));} });
+            languageSelect?.addEventListener('change', (e) => { setLanguage(e.target.value); });
+            copyUidBtn?.addEventListener('click', () => {
+                 if (currentUser?.uid && navigator.clipboard) {
+                     navigator.clipboard.writeText(currentUser.uid)
+                         .then(() => {
+                             const originalText = copyUidBtn.textContent;
+                             const originalTitle = copyUidBtn.title;
+                             copyUidBtn.textContent = translate('tooltip_copied');
+                             copyUidBtn.title = translate('tooltip_copied');
+                             setTimeout(() => {
+                                 if (copyUidBtn) {
+                                     copyUidBtn.textContent = originalText;
+                                     copyUidBtn.title = originalTitle;
+                                 }
+                             }, 1500);
+                         })
+                         .catch(err => {
+                             console.error('ইউআইডি কপি করতে ব্যর্থ: ', err);
+                             alert(translate('error_copying'));
+                         });
+                 }
+            });
+
+
+            // --- Data Loading Orchestrator (ডেটা লোডিং অর্কেস্ট্রেটর) ---
+            async function loadAllUserData(uid) {
+                console.log(`${uid} এর জন্য ডেটা লোড হচ্ছে`);
+                const loads = [
+                    loadUserLettersAndInteractions(uid),
+                    loadUserBookmarks(uid),
+                    loadFollowData(uid),
+                    loadPublicLettersIndex(), // No specific sort method initially, it will be random
+                    loadInbox(uid)
+                ];
+                try { await Promise.all(loads); console.log("প্রাথমিক ডেটা লোড সম্পন্ন।"); }
+                catch (e) { console.error("ডেটা লোড শুরু করতে ত্রুটি:", e); }
+            }
+
+
+            // --- Data Loaders (ডেটা লোডার) ---
+            function loadUserLettersAndInteractions(uid) { return new Promise((resolve, reject)=>{ cleanupListener('userLetters'); const ref = database.ref(`users/${uid}/letters`); const listener = ref.orderByChild('timestamp').on('value', async s => { const data={};const promises=[]; if(s.exists()){s.forEach(cs=>{const ld=cs.val();if(ld?.content){ld.id=cs.key;ld.ownerUid=uid;ld.likes=ld.likes||{};ld.comments=ld.comments||{};data[ld.id]=ld;if(ld.privacy !== 'private') promises.push(attachCommentListener(ld.id,uid,'users'));}}); } try { await Promise.all(promises); userLettersData=data; displayLetters(); console.log("নিজের চিঠি লোড হয়েছে"); resolve();} catch(e){console.error("নিজের চিঠি লোড করতে ত্রুটি",e);reject(e);} }, e => {console.error("নিজের চিঠি লোড করতে ত্রুটি",e);reject(e);}); activeListeners.userLetters={ref: ref, listener: listener}; }); }
+            function loadUserBookmarks(uid) { return new Promise((resolve, reject)=>{ cleanupListener('userBookmarks'); const ref=database.ref(`user_bookmarks/${uid}`); const listener=ref.on('value',s=>{ const ids=new Set(); if(s.exists()){s.forEach(cs=>{if(cs.val()===true)ids.add(cs.key);});} const changed=userBookmarkIds.size!==ids.size||![...userBookmarkIds].every(id=>ids.has(id))||![...ids].every(id=>userBookmarkIds.has(id)); userBookmarkIds=ids; if(changed){displayLetters();displayFeedContent();displayBookmarks();} console.log("বুকমার্ক লোড হয়েছে"); resolve();}, e=>{console.error("বুকমার্ক লোড করতে ত্রুটি", e);reject(e);}); activeListeners.userBookmarks={ref: ref, listener: listener}; }); }
+            function loadPublicLettersIndex(sortMethodOverride = null) {
+                return new Promise((resolve, reject) => {
+                    const ref = database.ref('public_letters');
+                    let chosenBaseSortMethod;
+                    let displaySortIndicatorKey;
+
+                    if (sortMethodOverride) {
+                        chosenBaseSortMethod = sortMethodOverride;
+                        if(chosenBaseSortMethod === 'random') {
+                             displaySortIndicatorKey = 'random';
+                        } else {
+                             displaySortIndicatorKey = chosenBaseSortMethod;
+                        }
+                    } else {
+                        chosenBaseSortMethod = Math.random() < 0.5 ? 'timestamp' : 'likeCount';
+                        displaySortIndicatorKey = 'random_display';
+                        console.log(`ফিড সক্রিয়, এলোমেলোভাবে বেস সর্ট বেছে নেওয়া হয়েছে: ${chosenBaseSortMethod}, শাফল করা হবে।`);
+                    }
+
+                    lastFeedSortMethodApplied = displaySortIndicatorKey;
+                    updateFeedSortIndicator(displaySortIndicatorKey);
+
+                    console.log(`পাবলিক ইনডেক্স লোড হচ্ছে - বেস সর্ট: ${chosenBaseSortMethod}`);
+                    let query = ref;
+                    const fetchLimit = 50;
+
+                    if (chosenBaseSortMethod === 'timestamp') {
+                        query = ref.orderByChild('timestamp').limitToLast(fetchLimit);
+                    } else if (chosenBaseSortMethod === 'likeCount') {
+                        query = ref.orderByChild('likeCount').limitToLast(fetchLimit);
+                    } else {
+                        query = ref.orderByKey().limitToLast(fetchLimit * 3);
+                    }
+
+                    query.once('value').then(async (indexSnapshot) => {
+                        const letterIndexData = [];
+                        if (indexSnapshot.exists()) {
+                            indexSnapshot.forEach(child => {
+                                const val = child.val();
+                                if (val?.ownerUid) {
+                                    letterIndexData.push({
+                                        id: child.key,
+                                        ownerUid: val.ownerUid,
+                                        timestamp: val.timestamp || 0,
+                                        likeCount: val.likeCount || 0
+                                    });
+                                }
+                            });
+                        }
+                        console.log(`${letterIndexData.length} ইনডেক্স এন্ট্রি পাওয়া গেছে (বেস সর্ট: ${chosenBaseSortMethod})।`);
+
+                        let processedIndexData = [...letterIndexData];
+
+                        if (chosenBaseSortMethod === 'timestamp') {
+                            processedIndexData.sort((a, b) => b.timestamp - a.timestamp);
+                        } else if (chosenBaseSortMethod === 'likeCount') {
+                            processedIndexData.sort((a, b) => (b.likeCount || 0) - (a.likeCount || 0));
+                        }
+                        
+                        if (displaySortIndicatorKey === 'random_display' || chosenBaseSortMethod === 'random') {
+                            for (let i = processedIndexData.length - 1; i > 0; i--) {
+                                const j = Math.floor(Math.random() * (i + 1));
+                                [processedIndexData[i], processedIndexData[j]] = [processedIndexData[j], processedIndexData[i]];
+                            }
+                             console.log("ফিড লিস্ট শাফল করা হয়েছে।");
+                        }
+
+                        const finalIndexData = processedIndexData.slice(0, fetchLimit);
+
+                        try {
+                            await fetchAndDisplayPublicLetters(finalIndexData);
+                            console.log(`পাবলিক ইনডেক্স লোড এবং প্রসেস হয়েছে (দেখানো হচ্ছে: ${displaySortIndicatorKey})`);
+                            resolve();
+                        } catch (e) {
+                            reject(e);
+                        }
+                    }).catch(error => {
+                        console.error("পাবলিক ইনডেক্স লোড করতে ত্রুটি (once):", error);
+                        if (feedContent) feedContent.innerHTML = `<p class="notice-text error">${translate('error_loading_feed')} ${mapFirebaseError(error.code)}</p>`;
+                        updateFeedSortIndicator('');
+                        reject(error);
+                    });
+                });
+            }
+            function loadFollowData(uid) { return new Promise((resolve, reject) => { cleanupListener('userFollowing'); cleanupListener('userFollowers'); let followingLoaded = false, followersLoaded = false; const checkCompletion = () => { if (followingLoaded && followersLoaded) { console.log("ফলো ডেটা লোড হয়েছে"); resolve(); } }; const followingRef = database.ref(`following/${uid}`); const followingListener = followingRef.on('value', async (snapshot) => { const rawFollowing = snapshot.val() || {}; const oldFollowingIds = new Set(Object.keys(userFollowingData)); userFollowingData = {}; const newFollowingIds = new Set(); const profilePromises = []; for (const followedUid in rawFollowing) { if (rawFollowing[followedUid] === true) { userFollowingData[followedUid] = true; newFollowingIds.add(followedUid); if (!userFollowingProfiles[followedUid]) { profilePromises.push(getUserProfile(followedUid).then(profile => { if (profile) userFollowingProfiles[followedUid] = profile; })); } } } try { await Promise.all(profilePromises); } catch (e) { console.warn("ফলোয়িং লিস্টের জন্য প্রোফাইল আনতে ত্রুটি:", e); } const followingChanged = oldFollowingIds.size !== newFollowingIds.size || ![...oldFollowingIds].every(id => newFollowingIds.has(id)) || ![...newFollowingIds].every(id => oldFollowingIds.has(id)); const countSpan = followingCountDiv?.querySelector('span:not([data-translate-key])'); if(countSpan) countSpan.textContent = newFollowingIds.size; if (followingChanged) { updateFriendSelectModalOptions(); displayLetters(); displayFeedContent(); displayBookmarks(); if (currentView === 'profile-section' && followingContent && !followingContent.classList.contains('hidden')) displayFollowingList(); if (currentView === 'profile-view-section' && viewingProfileUid) setupOtherProfileView(viewingProfileUid); } followingLoaded = true; checkCompletion(); }, (error) => { console.error("ফলোয়িং লোড করতে ত্রুটি", error); reject(error); }); const followersRef = database.ref(`followers/${uid}`); const followersListener = followersRef.on('value', (snapshot) => { const rawFollowers = snapshot.val() || {}; userFollowerIds = new Set(Object.keys(rawFollowers).filter(id => rawFollowers[id] === true)); const countSpan = followerCountDiv?.querySelector('span:not([data-translate-key])'); if(countSpan) countSpan.textContent = userFollowerIds.size; if (currentUser && currentUser.uid === uid && userProfile) { const newDbCount = userFollowerIds.size; if (userProfile.followerCount !== newDbCount) { console.log(`${uid} এর ফলোয়ার সংখ্যা ${userProfile.followerCount} থেকে ${newDbCount} এ আপডেট করা হচ্ছে`); database.ref(`user_profiles/${uid}/followerCount`).set(newDbCount).then(() => { if (userProfile) userProfile.followerCount = newDbCount; cacheUserProfile(uid, userProfile.email, userProfile.name, newDbCount); }).catch(err => console.error("প্রোফাইলে ফলোয়ার সংখ্যা আপডেট করতে ত্রুটি:", err)); } } followersLoaded = true; checkCompletion(); }, (error) => { console.error("ফলোয়ার লোড করতে ত্রুটি", error); reject(error); }); activeListeners.userFollowing = { ref: followingRef, listener: followingListener }; activeListeners.userFollowers = { ref: followersRef, listener: followersListener }; }); }
+            function loadInbox(uid) { return new Promise((resolve, reject)=>{ cleanupListener('userInbox'); const ref=database.ref(`inboxes/${uid}`); const listener=ref.orderByChild('timestamp').on('value', s => { const data={};let unread=0; if(s.exists()){s.forEach(cs=>{const d=cs.val();if(d?.letterId&&d?.senderUid){d.inboxId=cs.key;d.read=d.read||false;data[d.inboxId]=d;if(!d.read && !d.isSenderCopy)unread++;}});} userInboxData=data; displayInbox(); updateInboxBadge(unread); console.log("ইনবক্স লোড হয়েছে"); resolve();}, e=>{console.error("ইনবক্স লোড করতে ত্রুটি",e);reject(e);}); activeListeners.userInbox={ref: ref, listener: listener}; }); }
+            async function fetchAndDisplayPublicLetters(indexData) { console.log(`${indexData.length} টি চিঠি আনা হচ্ছে...`); const fetches=indexData.map(i=>getFullLetterData(i.id,i.ownerUid, 'users')); try{const letters=(await Promise.all(fetches)).filter(Boolean); allPublicLettersData=letters.reduce((acc,l)=>{acc[l.id]=l;if(!currentUser||l.ownerUid!==currentUser.uid)attachCommentListener(l.id,l.ownerUid, 'users'); return acc;},{}); displayFeedContent();displayBookmarks();} catch(e){console.error("পাবলিক চিঠি আনতে ত্রুটি:", e);feedContent&&(feedContent.innerHTML=getPlaceholder('error_fetching_letters'));} }
+            async function getFullLetterData(id, owner, type = 'users') { if(!id) return null; if (type === 'users' && userLettersData[id]) return userLettersData[id]; if (type === 'users' && allPublicLettersData[id]) return allPublicLettersData[id]; if (type === 'shared' && sharedLettersData[id]) return sharedLettersData[id]; if (userLettersData[id]) return userLettersData[id]; if (allPublicLettersData[id]) return allPublicLettersData[id]; if (sharedLettersData[id]) return sharedLettersData[id]; let path; if (type === 'shared') path = `shared_letters/${id}`; else if(owner) path = `users/${owner}/letters/${id}`; else { console.warn(`${type} ধরনের চিঠি ${id} মালিক ছাড়া আনা যাবে না।`); return null; } try { const s=await database.ref(path).get(); if(s.exists()){ const l=s.val();l.id=id;l.ownerUid = l.ownerUid || owner; if(!l.ownerUid) console.warn("আনা চিঠিতে ownerUid অনুপস্থিত", id, path); l.likes=l.likes||{}; l.comments=l.comments||{}; if (type === 'shared') sharedLettersData[id] = l; return l;} console.warn(`চিঠি ${path} এ পাওয়া যায়নি`); return null; } catch(e){ console.error(`${path} থেকে আনতে ত্রুটি`, e); return null; } }
+            async function loadLeaderboardData() { if (!database || !leaderboardList) return; showLoading(true); leaderboardList.innerHTML = getPlaceholder('placeholder_leaderboard_loading'); const leaderboardRef = database.ref('user_profiles'); try { const snapshot = await leaderboardRef.orderByChild('followerCount').limitToLast(20).once('value'); const leaderboardData = []; if (snapshot.exists()) { snapshot.forEach(childSnapshot => { const user = childSnapshot.val(); if (user && user.name) { leaderboardData.push({ uid: childSnapshot.key, name: user.name, followerCount: user.followerCount || 0 }); } }); leaderboardData.reverse(); } displayLeaderboard(leaderboardData); } catch (error) { console.error("লিডারবোর্ড লোড করতে ত্রুটি:", error); leaderboardList.innerHTML = getPlaceholder('error_leaderboard_load'); } finally { showLoading(false); } }
+
+            // --- Display Functions (ডিসপ্লে ফাংশন) ---
+            function displayLetters() { if (!letterArchive || !currentUser) return; letterArchive.innerHTML = ''; const letters = Object.values(userLettersData).sort((a,b)=>(b.timestamp||0)-(a.timestamp||0)); if(letters.length===0){letterArchive.innerHTML=getPlaceholder('placeholder_no_letters'); return;} const frag = document.createDocumentFragment(); Promise.all(letters.map(l=>createLetterElement(l, false, false))).then(els=>els.filter(Boolean).forEach(el=>frag.appendChild(el))).finally(()=>{letterArchive.innerHTML = ''; letterArchive.appendChild(frag); console.log("চিঠিগুলো দেখানো হয়েছে");}).catch(e => console.error("চিঠি দেখাতে ত্রুটি", e)); }
+            function displayFeedContent() {
+                if (!feedContent) return;
+                feedContent.innerHTML = '';
+                let letters = Object.values(allPublicLettersData);
+
+                if (letters.length === 0 && currentView === 'feed-section') {
+                    feedContent.innerHTML = getPlaceholder('placeholder_no_public_letters');
+                    return;
+                }
+
+                const frag = document.createDocumentFragment();
+                lettersSinceLastAd = 0;
+                nextAdAfter = Math.floor(Math.random() * 6) + 10;
+
+                const letterElementPromises = letters.map(async (letter, index) => {
+                    const letterEl = await createLetterElement(letter, true, false);
+                    if (letterEl) {
+                        frag.appendChild(letterEl);
+                        lettersSinceLastAd++;
+
+                        if (lettersSinceLastAd >= nextAdAfter && index < letters.length - 1) {
+                            console.log(`বিজ্ঞাপন ইনজেক্ট করা হচ্ছে ${lettersSinceLastAd} টি চিঠির পর।`);
+                            
+                            const adOuterDiv = document.createElement('div');
+                            adOuterDiv.className = 'ad-container';
+                            adOuterDiv.style.textAlign = 'center';
+                            adOuterDiv.style.margin = '20px 0'; // Matched to typical letter item spacing
+                            adOuterDiv.style.padding = '10px';
+                            adOuterDiv.style.borderTop = '1px dashed #ccc';
+                            adOuterDiv.style.borderBottom = '1px dashed #ccc';
+                            
+                            const adInfoText = document.createElement('p');
+                            adInfoText.style.fontSize = '0.8em';
+                            adInfoText.style.color = '#777';
+                            adInfoText.style.marginBottom = '5px';
+                            adInfoText.textContent = translate('advertisement_label') || 'Advertisement';
+                            adOuterDiv.appendChild(adInfoText);
+
+                            frag.appendChild(adOuterDiv);
+                            adOuterDiv.dataset.loadAd = "true"; // Mark for script loading
+
+                            lettersSinceLastAd = 0;
+                            nextAdAfter = Math.floor(Math.random() * 6) + 10;
+                        }
+                    }
+                    return letterEl;
+                });
+
+                Promise.all(letterElementPromises)
+                    .then(() => {
+                        feedContent.appendChild(frag); // Append everything at once
+                        console.log(`ফিড দেখানো হয়েছে (সর্ট: ${lastFeedSortMethodApplied || 'timestamp'})। বিজ্ঞাপন স্থানধারক যুক্ত করা হয়েছে।`);
+                        
+                        const adPlaceholders = feedContent.querySelectorAll('div[data-load-ad="true"]');
+                        adPlaceholders.forEach(placeholder => {
+                            loadAdIntoContainer(placeholder);
+                            delete placeholder.dataset.loadAd;
+                        });
+                    })
+                    .catch(e => console.error("ফিড কন্টেন্ট দেখাতে ত্রুটি:", e));
+            }
+            function displayBookmarks() { if (!bookmarkArchive || !currentUser) return; bookmarkArchive.innerHTML = ''; const ids = Array.from(userBookmarkIds); if (ids.length === 0) { bookmarkArchive.innerHTML = getPlaceholder('placeholder_no_bookmarks'); return; } const fetchPromises = ids.map(async id => { let letter = userLettersData[id] || allPublicLettersData[id] || sharedLettersData[id]; if (letter) return letter; else { const inboxEntry = Object.values(userInboxData).find(item => item.letterId === id); if (inboxEntry) { letter = await getFullLetterData(id, inboxEntry.senderUid, inboxEntry.isSenderCopy ? 'users' : 'shared'); if (letter) return letter; } letter = Object.values(allPublicLettersData).find(l => l.id === id); if(letter) return letter; console.warn(`বুকমার্ক করা চিঠি ${id} খুঁজে পাওয়া যায়নি`); return null; } }); Promise.all(fetchPromises).then(lettersRaw => { const letters = lettersRaw.filter(Boolean); if(letters.length === 0){bookmarkArchive.innerHTML = getPlaceholder('placeholder_no_bookmarks'); return;} letters.sort((a,b)=>(b.timestamp||0)-(a.timestamp||0)); const frag = document.createDocumentFragment(); Promise.all(letters.map(l=>createLetterElement(l, true, sharedLettersData[l.id] ? true : false))).then(els=>els.filter(Boolean).forEach(el=>frag.appendChild(el))).finally(()=>{bookmarkArchive.innerHTML=''; bookmarkArchive.appendChild(frag); console.log("বুকমার্ক দেখানো হয়েছে");}); }).catch(e => {console.error("বুকমার্ক আনতে ত্রুটি", e); bookmarkArchive.innerHTML = `<p class="notice-text error">${translate('error_fetching_bookmarks')}</p>`;}); }
+            function displayFollowingList() { if (!followingList || !currentUser) return; followingList.innerHTML = ''; const ids = Object.keys(userFollowingData); if(ids.length===0){followingList.innerHTML=getPlaceholder('placeholder_not_following'); } const frag=document.createDocumentFragment(); ids.forEach(uid => { const p = userFollowingProfiles[uid] || {name:translate('loading'), email:''}; const item=document.createElement('div'); item.className='following-item'; const infoDiv = document.createElement('div'); infoDiv.className = 'following-info'; const detailsDiv = document.createElement('div'); detailsDiv.className = 'following-details'; const nameSpan = document.createElement('span'); nameSpan.className = 'following-name'; nameSpan.textContent = p.name; nameSpan.title = translate('tooltip_view_profile', {name: p.name}); nameSpan.onclick=()=>viewUserProfile(uid); const emailSpan = document.createElement('span'); emailSpan.className = 'following-email'; emailSpan.textContent = p.email||''; detailsDiv.appendChild(nameSpan); detailsDiv.appendChild(emailSpan); infoDiv.appendChild(detailsDiv); const unfollowBtn = document.createElement('button'); unfollowBtn.className = 'unfollow-btn'; unfollowBtn.textContent = translate('button_unfollow'); unfollowBtn.onclick=(e)=>{e.stopPropagation(); handleFollow(uid, e.target);}; item.appendChild(infoDiv); item.appendChild(unfollowBtn); frag.appendChild(item); }); followingList.innerHTML = ''; followingList.appendChild(frag); console.log("ফলোয়িং লিস্ট দেখানো হয়েছে");}
+            async function displayInbox() { if (!inboxList || !currentUser) return; inboxList.innerHTML = ''; const items = Object.values(userInboxData).filter(item => !item.isSenderCopy) .sort((a,b)=>(b.timestamp||0)-(a.timestamp||0)); if(items.length===0){inboxList.innerHTML=getPlaceholder('placeholder_inbox_empty'); return;} const senderUids=[...new Set(items.map(i=>i.senderUid))]; const letterFetchPromises = items.map(item => getFullLetterData(item.letterId, item.senderUid, 'shared')); try {await Promise.all(senderUids.map(uid=>getUserProfile(uid))); await Promise.all(letterFetchPromises);}catch(e){} const frag=document.createDocumentFragment(); items.forEach(item => { const sender = userProfilesCache[item.senderUid] || {name:translate('unknown_author')}; const letter = sharedLettersData[item.letterId]; const div = document.createElement('div'); div.className=`inbox-item ${!item.read ? 'unread' : ''}`; div.dataset.inboxId = item.inboxId || item.letterId; div.dataset.letterId = item.letterId; const infoDiv = document.createElement('div'); infoDiv.className = 'inbox-item-info'; const senderSpan = document.createElement('span'); senderSpan.className = `inbox-sender`; senderSpan.textContent = `${translate('inbox_from_label')} ${sender.name}`; const snippetSpan = document.createElement('span'); snippetSpan.className = 'inbox-snippet'; snippetSpan.textContent = letter ? `${letter.content.substring(0,50)}...` : translate('loading_letters'); infoDiv.appendChild(senderSpan); infoDiv.appendChild(snippetSpan); const metaDiv = document.createElement('div'); metaDiv.className = 'inbox-meta'; const timeSpan = document.createElement('span'); timeSpan.className = 'inbox-time'; timeSpan.textContent = formatShortTime(item.timestamp); metaDiv.appendChild(timeSpan); div.appendChild(infoDiv); div.appendChild(metaDiv); div.onclick=()=>openInboxLetter(item.inboxId || item.letterId, item.letterId, item.senderUid, false); frag.appendChild(div); }); inboxList.innerHTML = ''; inboxList.appendChild(frag); console.log("ইনবক্স (শুধুমাত্র প্রাপ্ত) দেখানো হয়েছে");}
+            function updateInboxBadge(count) { if(!inboxNotificationBadge) return; const displayCount = count > 0 ? (count > 9 ? '9+' : count.toString()) : '0'; inboxNotificationBadge.textContent=displayCount; inboxNotificationBadge.classList.toggle('hidden', count === 0); }
+            async function markInboxAsRead() { if(!currentUser||Object.keys(userInboxData).length===0) return; const updates={}; let count=0; for(const id in userInboxData) {if(userInboxData[id] && !userInboxData[id].read && !userInboxData[id].isSenderCopy){updates[`inboxes/${currentUser.uid}/${id}/read`]=true; count++;}} if(count>0) await database.ref().update(updates).catch(()=>{}); }
+            function displayLeaderboard(users) { if (!leaderboardList) return; leaderboardList.innerHTML = ''; if (!users || users.length === 0) { leaderboardList.innerHTML = getPlaceholder('placeholder_leaderboard_empty'); return; } const frag = document.createDocumentFragment(); users.forEach((user, index) => { const item = document.createElement('div'); item.className = 'leaderboard-item'; const rankSpan = document.createElement('span'); rankSpan.className = 'leaderboard-rank'; rankSpan.textContent = `#${index + 1}`; const infoDiv = document.createElement('div'); infoDiv.className = 'leaderboard-info'; const nameSpan = document.createElement('span'); nameSpan.className = 'leaderboard-name'; nameSpan.textContent = user.name; nameSpan.title = translate('tooltip_view_profile', { name: user.name }); nameSpan.onclick = () => viewUserProfile(user.uid); infoDiv.appendChild(nameSpan); const countSpan = document.createElement('span'); countSpan.className = 'leaderboard-count'; countSpan.innerHTML = `<i class="fas fa-users"></i> ${user.followerCount}`; countSpan.title = translate('leaderboard_followers'); item.appendChild(rankSpan); item.appendChild(infoDiv); item.appendChild(countSpan); frag.appendChild(item); }); leaderboardList.appendChild(frag); }
+            function displaySearchResults(users) {
+                if (!searchResultsList) return;
+                searchResultsList.innerHTML = '';
+                if (!users || users.length === 0) {
+                    searchResultsList.innerHTML = getPlaceholder('placeholder_search_no_results');
+                    return;
+                }
+                const frag = document.createDocumentFragment();
+                users.forEach(user => {
+                    if (user.uid === currentUser?.uid) return;
+
+                    const item = document.createElement('div');
+                    item.className = 'search-result-item';
+
+                    const infoDiv = document.createElement('div');
+                    infoDiv.className = 'search-result-info';
+
+                    const detailsDiv = document.createElement('div');
+                    detailsDiv.className = 'search-result-details';
+
+                    const nameSpan = document.createElement('span');
+                    nameSpan.className = 'search-result-name';
+                    nameSpan.textContent = user.name;
+                    nameSpan.title = translate('tooltip_view_profile', { name: user.name });
+                    nameSpan.onclick = () => viewUserProfile(user.uid);
+
+                    const emailSpan = document.createElement('span');
+                    emailSpan.className = 'search-result-email';
+                    emailSpan.textContent = user.email || '';
+
+                    detailsDiv.appendChild(nameSpan);
+                    detailsDiv.appendChild(emailSpan);
+                    infoDiv.appendChild(detailsDiv);
+
+                    const viewBtn = document.createElement('button');
+                    viewBtn.className = 'view-profile-btn';
+                    viewBtn.textContent = translate('button_view_profile');
+                    viewBtn.onclick = () => viewUserProfile(user.uid);
+
+                    item.appendChild(infoDiv);
+                    item.appendChild(viewBtn);
+                    frag.appendChild(item);
+                });
+                searchResultsList.appendChild(frag);
+            }
+
+
+            // --- Create Letter Element (চিঠি এলিমেন্ট তৈরি) ---
+            async function createLetterElement(letter, isFeedOrBookmarkView = false, isShared = false) { if (!letter?.id || !letter?.ownerUid || !currentUser) { return null; } const itemDiv = document.createElement('div'); itemDiv.className = 'letter-item'; itemDiv.dataset.letterId = letter.id; itemDiv.dataset.ownerUid = letter.ownerUid; const wrapper = document.createElement('div'); wrapper.className = 'letter-item-content-wrapper'; wrapper.addEventListener('click', () => showLetterInViewer(letter, isShared)); const contentP = document.createElement('p'); contentP.className='letter-content'; contentP.textContent=letter.content||''; const SEE_MORE=250; if (letter.content && letter.content.length > SEE_MORE) { contentP.classList.add('truncated'); const seeMoreBtn = document.createElement('button'); seeMoreBtn.className='see-more-btn'; seeMoreBtn.textContent=translate('see_more'); seeMoreBtn.addEventListener('click', (e) => { e.stopPropagation(); contentP.classList.remove('truncated'); seeMoreBtn.remove(); }); wrapper.appendChild(contentP); wrapper.appendChild(seeMoreBtn); } else { wrapper.appendChild(contentP); } const metaDiv = document.createElement('div'); metaDiv.className='letter-meta'; const authorProfile = await getUserProfile(letter.ownerUid); const authorInfo = document.createElement('div'); authorInfo.className='letter-author-info'; const authorNameSpan = document.createElement('span'); authorNameSpan.className = 'letter-author-name'; authorNameSpan.textContent = authorProfile.name; authorNameSpan.title = translate('tooltip_view_profile', {name: authorProfile.name}); authorNameSpan.addEventListener('click',(e)=>{e.stopPropagation(); viewUserProfile(letter.ownerUid);}); authorInfo.appendChild(authorNameSpan); if (currentUser.uid !== letter.ownerUid) { const followBtn = document.createElement('button'); const isFollowing = userFollowingData[letter.ownerUid]; followBtn.className=`follow-author-btn ${isFollowing ? 'following':''}`; followBtn.textContent = translate(isFollowing ? 'button_unfollow' : 'button_follow'); followBtn.title = translate(isFollowing ? 'tooltip_unfollow' : 'tooltip_follow'); followBtn.addEventListener('click',(e)=>{e.stopPropagation(); handleFollow(letter.ownerUid, e.target);}); authorInfo.appendChild(followBtn); } metaDiv.appendChild(authorInfo); const timestampDiv = document.createElement('div'); timestampDiv.className = 'letter-timestamp'; timestampDiv.textContent = formatTimestamp(letter.timestamp); metaDiv.appendChild(timestampDiv); wrapper.appendChild(metaDiv); const actionsDiv = document.createElement('div'); actionsDiv.className='letter-actions'; const likeCount=Object.keys(letter.likes||{}).length; const isLiked=letter.likes?.[currentUser.uid]; const likeBtn = document.createElement('button'); likeBtn.className = `action-btn like-btn ${isLiked?'liked':''}`; likeBtn.title = translate(isLiked?'tooltip_unlike':'tooltip_like'); likeBtn.disabled = isShared; likeBtn.innerHTML = `👍 <span class="action-count">${likeCount}</span>`; likeBtn.addEventListener('click',(e)=>{e.stopPropagation(); handleLike(letter.id, letter.ownerUid, e.currentTarget, isShared ? 'shared' : 'users');}); actionsDiv.appendChild(likeBtn); const commentCount=Object.keys(letter.comments||{}).length; const commentBtn = document.createElement('button'); commentBtn.className = 'action-btn comment-btn'; commentBtn.title = translate('tooltip_comment'); commentBtn.disabled = isShared || letter.privacy === 'private'; commentBtn.innerHTML = `💬 <span class="action-count">${commentCount}</span>`; actionsDiv.appendChild(commentBtn); const isBookmarked = userBookmarkIds.has(letter.id); const bookmarkBtn = document.createElement('button'); bookmarkBtn.className = `action-btn bookmark-btn ${isBookmarked?'bookmarked':''}`; bookmarkBtn.title = translate(isBookmarked?'tooltip_remove_bookmark':'tooltip_bookmark'); bookmarkBtn.innerHTML = `<i class="${isBookmarked?'fas':'far'} fa-bookmark"></i>`; bookmarkBtn.addEventListener('click',(e)=>{e.stopPropagation();handleBookmark(letter.id, e.currentTarget);}); actionsDiv.appendChild(bookmarkBtn); const shareBtn = document.createElement('button'); shareBtn.className = 'action-btn share-btn'; shareBtn.title = translate('tooltip_share'); shareBtn.innerHTML = `<i class="fas fa-share-alt"></i>`; shareBtn.addEventListener('click',(e)=>{e.stopPropagation();handleShare(letter.id, letter.content);}); actionsDiv.appendChild(shareBtn); if(!isFeedOrBookmarkView && !isShared && currentUser.uid === letter.ownerUid){ const deleteBtn = document.createElement('button'); deleteBtn.className='action-btn delete-btn'; deleteBtn.title=translate('tooltip_delete'); deleteBtn.innerHTML='🗑️'; deleteBtn.addEventListener('click',(e)=>{e.stopPropagation();deleteLetter(letter.id);}); actionsDiv.appendChild(deleteBtn); } wrapper.appendChild(actionsDiv); if (!isShared && letter.privacy !== 'private') { const commentsSection=document.createElement('div'); commentsSection.className='comments-section hidden'; const commentsList = document.createElement('div'); commentsList.className = 'comments-list'; commentsList.innerHTML = `<p class="notice-text" style="font-size:0.8rem">${translate('loading_comments')}</p>`; const addCommentForm = document.createElement('form'); addCommentForm.className='add-comment-form'; const commentTextarea = document.createElement('textarea'); commentTextarea.placeholder=translate('placeholder_comment'); commentTextarea.rows=1; commentTextarea.required=true; const commentSubmitBtn = document.createElement('button'); commentSubmitBtn.type='submit'; commentSubmitBtn.textContent = translate('button_post'); addCommentForm.appendChild(commentTextarea); addCommentForm.appendChild(commentSubmitBtn); commentsSection.appendChild(commentsList); commentsSection.appendChild(addCommentForm); wrapper.appendChild(commentsSection); commentBtn.addEventListener('click',(e)=>{ e.stopPropagation(); const isHidden=commentsSection.classList.toggle('hidden'); if(!isHidden){ const listEl=commentsSection.querySelector('.comments-list');if(!listEl) return; if(listEl.dataset.needsRefresh==='true'||listEl.innerHTML.includes(translate('loading_comments'))){renderComments(letter.id,letter.ownerUid,letter.comments||{},listEl, 'users');delete listEl.dataset.needsRefresh;} commentsSection.querySelector('textarea')?.focus();} }); addCommentForm.addEventListener('submit',(e)=>{e.preventDefault();handleAddComment(letter.id, letter.ownerUid, e.target.querySelector('textarea'), e.target.querySelector('button'), 'users');}); } itemDiv.appendChild(wrapper); return itemDiv; }
+
+            // --- Render Comments/Replies (কমেন্ট/রিপ্লাই রেন্ডার) ---
+            async function renderComments(letterId, ownerUid, commentsData, listEl, letterType = 'users') { if(!listEl)return; listEl.innerHTML=''; const ids=Object.keys(commentsData||{}).sort((a,b)=>(commentsData[a].timestamp||0)-(commentsData[b].timestamp||0)); if(ids.length===0){listEl.innerHTML=`<p style="font-style:italic;font-size:0.8rem;color:#888;">${translate('no_comments')}</p>`; return;} const uids=[...new Set(ids.map(id=>commentsData[id].userId).filter(Boolean))]; try{await Promise.all(uids.map(uid=>getUserProfile(uid)));}catch(e){} const frag=document.createDocumentFragment(); for(const cid of ids){ const c=commentsData[cid]; if(!c?.userId||!c?.text)continue; const item=document.createElement('div'); item.className='comment-item'; item.dataset.commentId=cid; const p=userProfilesCache[c.userId]||{name:translate('unknown_author')}; const likesCount=Object.keys(c.likes||{}).length; const isLiked=currentUser&&c.likes?.[currentUser.uid]; const metaDiv = document.createElement('div'); metaDiv.className='comment-meta'; const authorTime = document.createElement('span'); authorTime.className = 'comment-author-time'; const authorSpan=document.createElement('span'); authorSpan.className='comment-author'; authorSpan.textContent=p.name; authorSpan.addEventListener('click',(e)=>{e.stopPropagation(); viewUserProfile(c.userId);}); authorTime.appendChild(authorSpan); const timeSpan=document.createElement('span'); timeSpan.className='comment-time'; timeSpan.textContent=` - ${formatShortTime(c.timestamp)}`; authorTime.appendChild(timeSpan); metaDiv.appendChild(authorTime); const actionsDiv = document.createElement('div'); actionsDiv.className='comment-actions'; const likeBtn = document.createElement('button'); likeBtn.className=`action-btn like-btn cmt-btn ${isLiked?'liked':''}`; likeBtn.title=translate(isLiked?'tooltip_unlike':'tooltip_like'); likeBtn.innerHTML=`👍 <span class="action-count">${likesCount}</span>`; likeBtn.addEventListener('click', (e)=>{e.stopPropagation(); handleCommentLike(letterId, ownerUid, cid, e.currentTarget, letterType);}); actionsDiv.appendChild(likeBtn); const replyBtn = document.createElement('button'); replyBtn.className='action-btn reply-btn cmt-btn'; replyBtn.title=translate('tooltip_reply'); replyBtn.innerHTML='↩️'; replyBtn.addEventListener('click', (e)=>{e.stopPropagation(); toggleReplyForm(item);}); actionsDiv.appendChild(replyBtn); if(currentUser?.uid===c.userId){ const delBtn = document.createElement('button'); delBtn.className='action-btn delete-comment-btn cmt-btn'; delBtn.title=translate('tooltip_delete'); delBtn.innerHTML='🗑️'; delBtn.addEventListener('click', (e)=>{e.stopPropagation(); handleDeleteComment(letterId, ownerUid, cid, item, letterType);}); actionsDiv.appendChild(delBtn); } metaDiv.appendChild(actionsDiv); item.appendChild(metaDiv); const textDiv = document.createElement('div'); textDiv.className='comment-text'; textDiv.textContent=c.text; item.appendChild(textDiv); const repliesEl = document.createElement('div'); repliesEl.className='comment-replies'; item.appendChild(repliesEl); const replyForm = document.createElement('form'); replyForm.className='add-reply-form hidden'; const replyTA = document.createElement('textarea'); replyTA.placeholder=translate('placeholder_reply_to', {name: p.name}); replyTA.rows=1; replyTA.required=true; const replySubmit=document.createElement('button'); replySubmit.type='submit'; replySubmit.textContent=translate('button_reply'); replyForm.appendChild(replyTA); replyForm.appendChild(replySubmit); replyForm.addEventListener('submit', (e)=>{e.preventDefault(); handleAddReply(letterId, ownerUid, cid, replyTA, replySubmit, item, letterType);}); item.appendChild(replyForm); if(repliesEl && c.replies) await renderReplies(letterId, ownerUid, cid, c.replies, repliesEl, letterType); frag.appendChild(item); } listEl.innerHTML=''; listEl.appendChild(frag); }
+            async function renderReplies(letterId, ownerUid, commentId, repliesData, listEl, letterType = 'users') { if(!listEl)return; listEl.innerHTML=''; const ids=Object.keys(repliesData||{}).sort((a,b)=>(repliesData[a].timestamp||0)-(repliesData[b].timestamp||0)); if(ids.length===0)return; const uids=[...new Set(ids.map(id=>repliesData[id].userId).filter(Boolean))]; try{await Promise.all(uids.map(uid=>getUserProfile(uid)));}catch(e){} const frag=document.createDocumentFragment(); for(const rid of ids){ const r=repliesData[rid]; if(!r?.userId || !r?.text) continue; const item=document.createElement('div'); item.className='reply-item'; item.dataset.replyId=rid; const p=userProfilesCache[r.userId]||{name:translate('unknown_author')}; const metaDiv = document.createElement('div'); metaDiv.className = 'comment-meta'; const authorTime = document.createElement('span'); authorTime.className = 'comment-author-time'; const authorSpan=document.createElement('span'); authorSpan.className='comment-author'; authorSpan.textContent=p.name; authorSpan.addEventListener('click',(e)=>{e.stopPropagation(); viewUserProfile(r.userId);}); authorTime.appendChild(authorSpan); const timeSpan=document.createElement('span'); timeSpan.className='comment-time'; timeSpan.textContent=` - ${formatShortTime(r.timestamp)}`; authorTime.appendChild(timeSpan); metaDiv.appendChild(authorTime); if(currentUser?.uid===r.userId){ const actionsDiv = document.createElement('div'); actionsDiv.className='comment-actions'; const delBtn=document.createElement('button'); delBtn.className='action-btn delete-comment-btn'; delBtn.title=translate('tooltip_delete'); delBtn.innerHTML='🗑️'; delBtn.addEventListener('click', (e)=>{e.stopPropagation(); handleDeleteReply(letterId, ownerUid, commentId, rid, item, letterType);}); actionsDiv.appendChild(delBtn); metaDiv.appendChild(actionsDiv); } item.appendChild(metaDiv); const textDiv = document.createElement('div'); textDiv.className='comment-text'; textDiv.textContent=r.text; item.appendChild(textDiv); frag.appendChild(item); } listEl.innerHTML=''; listEl.appendChild(frag); }
+
+            // --- Interaction Handlers (ইন্টারঅ্যাকশন হ্যান্ডলার) ---
+            function handleLike(letterId, ownerUid, btn, letterType = 'users') { if (!currentUser?.uid || !database || !btn || btn.disabled || letterType === 'shared') return; const basePath = `users/${ownerUid}/letters/${letterId}`; const likeRef = database.ref(`${basePath}/likes/${currentUser.uid}`); const publicRef = database.ref(`public_letters/${letterId}/likeCount`); btn.disabled = true; likeRef.transaction(cv => (cv === null ? true : null)).then(result => {if (!result.committed) {console.warn("লাইক ট্রানজ্যাকশন বাতিল হয়েছে:", letterId); return database.ref(`${basePath}/likes`).get();} return database.ref(`${basePath}/likes`).get();}).then(likesSnapshot => { const count = likesSnapshot.numChildren(); const isLikedNow = likesSnapshot.hasChild(currentUser.uid); const publicUpdatePromise = database.ref(`${basePath}/privacy`).get().then(privacySnap => {if (privacySnap.val() === 'public') {return publicRef.set(count);} return Promise.resolve();}); return publicUpdatePromise.then(() => { if (btn && document.body.contains(btn)) { btn.classList.toggle('liked', isLikedNow); btn.title = translate(isLikedNow ? 'tooltip_unlike' : 'tooltip_like'); const countEl = btn.querySelector('.action-count'); if (countEl) countEl.textContent = count; } }); }).catch(error => { console.error("লাইক/পাবলিক কাউন্ট ত্রুটি:", error); }).finally(() => { if (btn && document.body.contains(btn)) { btn.disabled = false; } }); }
+            function handleBookmark(letterId, btn) { if (!currentUser?.uid||!database||!btn || btn.disabled) return; const ref = database.ref(`user_bookmarks/${currentUser.uid}/${letterId}`); const isMarked = userBookmarkIds.has(letterId); const newVal = isMarked ? null : true; btn.disabled=true; ref.set(newVal).then(()=>{ if(btn && document.body.contains(btn)){ btn.classList.toggle('bookmarked',newVal===true); btn.innerHTML = `<i class="${newVal ? 'fas' : 'far'} fa-bookmark"></i>`; btn.title = translate(newVal ? 'tooltip_remove_bookmark' : 'tooltip_bookmark'); } }).catch(e=>console.error("বুকমার্ক ত্রুটি",e)).finally(()=>{if(btn && document.body.contains(btn)) btn.disabled=false;}); }
+            function handleShare(letterId, content) { if (!letterId) return; const url = `${window.location.origin}${window.location.pathname}?letter=${letterId}`; const title = translate('share_title'); const text = content ? `"${sanitizeHTML(content).substring(0, 100)}..."\n\n${translate('share_link_label')} ${url}` : `${translate('share_text_generic')} ${url}`; const shareData = { title, text, url }; if (navigator.share) { navigator.share(shareData).then(() => console.log('সফলভাবে শেয়ার করা হয়েছে')).catch((error) => console.log('শেয়ার করতে ব্যর্থ:', error)); } else if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(url).then(()=>alert(translate('link_copied'))).catch((err)=>{console.error('লিঙ্ক কপি করতে ব্যর্থ (ক্লিপবোর্ড):', err); prompt(translate('share_link_label'), url);}); } else { console.warn('Web Share API এবং Clipboard API উপলব্ধ নেই। Prompt দেখানো হচ্ছে।'); prompt(translate('share_link_label'), url); } }
+            function handleCommentLike(letterId, ownerUid, commentId, btn, letterType = 'users') { if (!currentUser?.uid||!database||!btn||btn.disabled) return; const basePath = letterType === 'shared' ? `shared_letters/${letterId}` : `users/${ownerUid}/letters/${letterId}`; const ref = database.ref(`${basePath}/comments/${commentId}/likes/${currentUser.uid}`); btn.disabled=true; ref.transaction(cv=>(cv===null?true:null)).then(result=>{ if(result.committed && btn && document.body.contains(btn)){ database.ref(`${basePath}/comments/${commentId}/likes`).get().then(s=>{const isLikedNow = result.snapshot.val()===true; btn.classList.toggle('liked',isLikedNow); btn.title=translate(isLikedNow?'tooltip_unlike':'tooltip_like'); const countEl=btn.querySelector('.action-count'); if(countEl) countEl.textContent=s.numChildren(); }); } }).catch(e=>{console.error("কমেন্ট লাইক ত্রুটি:", e);}).finally(()=>{if(btn && document.body.contains(btn))btn.disabled=false;}); }
+            function handleAddComment(letterId, ownerUid, textarea, submitBtn, letterType = 'users') { if (!currentUser?.uid || !database || !textarea || !submitBtn) return; const text = textarea.value.trim(); if(!text) return; textarea.disabled=true; submitBtn.disabled=true; submitBtn.textContent=translate('button_posting'); const basePath = letterType === 'shared' ? `shared_letters/${letterId}` : `users/${ownerUid}/letters/${letterId}`; const ref = database.ref(`${basePath}/comments`); const comment={userId:currentUser.uid, userEmail:currentUser.email, text:text, timestamp:firebase.database.ServerValue.TIMESTAMP, likes:{}}; ref.push(comment).then(()=>textarea.value='').catch(e=>alert(`${translate('error_comment')} ${e.message}`)).finally(()=>{if(textarea)textarea.disabled=false; if(submitBtn){submitBtn.disabled=false; submitBtn.textContent=translate('button_post');}}); }
+            function handleAddReply(letterId, ownerUid, pCid, textarea, submitBtn, itemEl, letterType = 'users') { if (!currentUser?.uid || !database || !textarea || !submitBtn) return; const text = textarea.value.trim(); if(!text) return; textarea.disabled=true; submitBtn.disabled=true; submitBtn.textContent=translate('button_replying'); const basePath = letterType === 'shared' ? `shared_letters/${letterId}` : `users/${ownerUid}/letters/${letterId}`; const ref = database.ref(`${basePath}/comments/${pCid}/replies`); const reply={userId:currentUser.uid, userEmail:currentUser.email, text:text, timestamp:firebase.database.ServerValue.TIMESTAMP}; ref.push(reply).then(()=>{textarea.value=''; toggleReplyForm(itemEl);}).catch(e=>alert(`${translate('error_reply')} ${e.message}`)).finally(()=>{if(textarea)textarea.disabled=false; if(submitBtn){submitBtn.disabled=false; submitBtn.textContent=translate('button_reply');}}); }
+            function handleDeleteComment(letterId, ownerUid, commentId, itemEl, letterType = 'users') { if(!currentUser||!database||!commentId) return; const basePath = letterType === 'shared' ? `shared_letters/${letterId}` : `users/${ownerUid}/letters/${letterId}`; const ref=database.ref(`${basePath}/comments/${commentId}`); ref.child('userId').get().then(s=>{if(s.val()!==currentUser.uid) return; if(confirm(translate("confirm_delete_comment"))) {ref.remove().catch(e=>alert(`${translate('error_deleting')} ${e.message}`));}}).catch(e=>alert(`${translate('error_checking')} ${e.message}`));}
+            function handleDeleteReply(letterId, ownerUid, commentId, replyId, itemEl, letterType = 'users') { if(!currentUser||!database||!replyId) return; const basePath = letterType === 'shared' ? `shared_letters/${letterId}` : `users/${ownerUid}/letters/${letterId}`; const ref=database.ref(`${basePath}/comments/${commentId}/replies/${replyId}`); ref.child('userId').get().then(s=>{if(s.val()!==currentUser.uid) return; if(confirm(translate("confirm_delete_reply"))) {ref.remove().catch(e=>alert(`${translate('error_deleting')} ${e.message}`));}}).catch(e=>alert(`${translate('error_checking')} ${e.message}`)); }
+            function handleFollow(targetUserId, btn) { if (!currentUser?.uid || !database || targetUserId === currentUser.uid || !btn || btn.disabled) return; btn.disabled = true; const isFollowing = userFollowingData[targetUserId] === true; const newVal = isFollowing ? null : true; const updates = {}; updates[`following/${currentUser.uid}/${targetUserId}`] = newVal; updates[`followers/${targetUserId}/${currentUser.uid}`] = newVal; updates[`user_profiles/${targetUserId}/followerCount`] = firebase.database.ServerValue.increment(newVal ? 1 : -1); console.log("ফলো/আনফলো আপডেট করার চেষ্টা:", updates); database.ref().update(updates) .then(() => { delete userFollowingProfiles[targetUserId]; console.log(`${targetUserId} এর জন্য ফলো/আনফলো আপডেট সফল`); }) .catch(e => { console.error("ফলো/আনফলো আপডেট ত্রুটি:", e); alert(`${translate('error_follow')} ${mapFirebaseError(e.code)}`); }) .finally(() => { setTimeout(() => { if (btn && document.body.contains(btn)) { btn.disabled = false; } }, 500); }); }
+            function toggleReplyForm(commentItemElement) { if(!commentItemElement)return; const form = commentItemElement.querySelector(`.add-reply-form`); if(form){const isHidden=form.classList.toggle('hidden'); if(!isHidden){const ta=form.querySelector('textarea'); if(ta){ta.value=''; ta.focus();}}} }
+
+            // --- Friend Select & Letter Form Submit (বন্ধু নির্বাচন এবং চিঠি ফর্ম জমা) ---
+            const privacyRadios = document.querySelectorAll('input[name="privacy"]');
+            privacyRadios.forEach(radio => radio?.addEventListener('change', handlePrivacyChange));
+            function handlePrivacyChange() { const selected = document.querySelector('input[name="privacy"]:checked')?.value; const isFriends = selected === 'friends'; friendSelectContainer?.classList.toggle('hidden', !isFriends); if (submitLetterBtn) { let buttonTextKey = 'save_button'; if (isFriends) buttonTextKey = 'send_to_friends_button'; else if (selected === 'public') buttonTextKey = 'post_to_feed_button'; const spanInsideButton = submitLetterBtn.querySelector('span'); if (spanInsideButton) spanInsideButton.textContent = translate(buttonTextKey); else submitLetterBtn.textContent = `✉️ ${translate(buttonTextKey)}`; } if (!isFriends) { selectedFriendsForSending.clear(); updateSelectedFriendCount(); } }
+            openFriendSelectModalBtn?.addEventListener('click', openFriendSelectModal);
+            async function openFriendSelectModal() { if (!friendSelectModal || !friendSelectList || !currentUser) return; friendSelectList.innerHTML = `<p class="notice-text">${translate('loading')}</p>`; modalSelectedCountSpan.textContent = selectedFriendsForSending.size; showModal(friendSelectModal); const ids = Object.keys(userFollowingData); if(ids.length === 0) { friendSelectList.innerHTML = getPlaceholder('placeholder_follow_to_select'); return; } const pFetch = ids.filter(id => !userFollowingProfiles[id]).map(id=>getUserProfile(id).then(p=>{if(p) userFollowingProfiles[id]=p;})); try { if(pFetch.length > 0) await Promise.all(pFetch); updateFriendSelectModalOptions(); } catch(e) { console.error("মোডালের জন্য প্রোফাইল আনতে ত্রুটি:", e); friendSelectList.innerHTML = getPlaceholder('error_generic');} }
+            function updateFriendSelectModalOptions() { if (!friendSelectList || !friendSelectModal?.classList.contains('show')) return; const ids = Object.keys(userFollowingData); if(ids.length === 0) { friendSelectList.innerHTML = getPlaceholder('placeholder_follow_to_select'); return; } friendSelectList.innerHTML = ''; const frag = document.createDocumentFragment(); ids.forEach(uid => { const p = userFollowingProfiles[uid] || {name:`User (${uid.substring(0,5)}...)`, email:''}; const item=document.createElement('div'); item.className='friend-item'; const label = document.createElement('label'); label.className = 'friend-info'; const checkbox = document.createElement('input'); checkbox.type='checkbox'; checkbox.className='friend-select-checkbox'; checkbox.value=uid; checkbox.checked = selectedFriendsForSending.has(uid); checkbox.addEventListener('change',(e)=>{ if(e.target.checked) selectedFriendsForSending.add(uid); else selectedFriendsForSending.delete(uid); modalSelectedCountSpan.textContent = selectedFriendsForSending.size; }); const details = document.createElement('div'); details.className = 'friend-details'; const nameSpan = document.createElement('span'); nameSpan.className='friend-name'; nameSpan.textContent=p.name; nameSpan.title=translate('tooltip_view_profile', {name: p.name}); nameSpan.addEventListener('click',(e)=>{ e.stopPropagation(); hideModal(friendSelectModal); viewUserProfile(uid); }); const emailSpan = document.createElement('span'); emailSpan.className='friend-email'; emailSpan.textContent=p.email||''; details.appendChild(nameSpan); details.appendChild(emailSpan); label.appendChild(checkbox); label.appendChild(details); item.appendChild(label); frag.appendChild(item); }); friendSelectList.appendChild(frag); }
+            confirmFriendSelectBtn?.addEventListener('click', () => { updateSelectedFriendCount(); hideModal(friendSelectModal); });
+            function updateSelectedFriendCount() { if(selectedFriendCountSpan) selectedFriendCountSpan.textContent = selectedFriendsForSending.size; }
+            letterForm?.addEventListener('submit', async (e) => { e.preventDefault(); if (!currentUser?.uid || !database) { alert(translate("alert_login_required")); return; } const content = letterContent.value.trim(); const privacy = document.querySelector('input[name="privacy"]:checked')?.value || 'private'; if (!content) { alert(translate('alert_letter_empty')); return; } if (privacy === 'friends' && selectedFriendsForSending.size === 0) { alert(translate("alert_select_friends")); openFriendSelectModal(); return; } showLoading(true); if(submitLetterBtn) submitLetterBtn.disabled = true; const senderUid = currentUser.uid; const senderProfile = userProfile || await getUserProfile(senderUid); const senderName = senderProfile?.name || translate('unknown_author'); const ts = firebase.database.ServerValue.TIMESTAMP; const baseLetterData = { ownerUid: senderUid, authorName: senderName, content: content, timestamp: ts }; const updates = {}; let letterKey; let navigateTo = 'profile-section'; try { if (privacy === 'friends') { const sharedLetterRef = database.ref('shared_letters').push(); letterKey = sharedLetterRef.key; if (!letterKey) throw new Error("শেয়ার্ড কী ত্রুটি"); updates[`shared_letters/${letterKey}`] = { ...baseLetterData, likes: {}, comments: {} }; let recipientsCount = 0; selectedFriendsForSending.forEach(rUid => { if (rUid && rUid !== senderUid) { updates[`inboxes/${rUid}/${letterKey}`] = { letterId: letterKey, senderUid: senderUid, isSenderCopy: false, timestamp: ts, read: false }; recipientsCount++; } }); if (recipientsCount === 0) { throw new Error("কোনো বৈধ প্রাপক নির্বাচন করা হয়নি"); } navigateTo = 'write-section'; } else { const userLetterRef = database.ref(`users/${senderUid}/letters`).push(); letterKey = userLetterRef.key; if (!letterKey) throw new Error("ইউজার কী ত্রুটি"); updates[`users/${senderUid}/letters/${letterKey}`] = { ...baseLetterData, privacy: privacy, likes: {}, comments: {} }; if (privacy === 'public') { updates[`public_letters/${letterKey}`] = { ownerUid: senderUid, timestamp: ts, likeCount: 0 }; navigateTo = 'feed-section'; } else { navigateTo = 'profile-section'; } } console.log("আপডেট করা হচ্ছে:", updates); await database.ref().update(updates); console.log(translate('alert_letter_saved_sent'), letterKey); if(letterContent) letterContent.value=''; selectedFriendsForSending.clear(); updateSelectedFriendCount(); const privateRadio = getEl('privacy-private'); if(privateRadio) privateRadio.checked=true; handlePrivacyChange(); setActiveView(navigateTo); if(privacy === 'friends') alert(translate("alert_sent_to_friends")); } catch (err) { console.error("চিঠি পাঠানো/সংরক্ষণ করতে ত্রুটি:", err); alert(`${translate('error_sending_letter')} ${mapFirebaseError(err.code || err.message)}`); } finally { showLoading(false); if(submitLetterBtn) submitLetterBtn.disabled = false; } });
+
+            // --- Delete Letter (চিঠি মোছা) ---
+            function deleteLetter(key) { if (!currentUser?.uid || !key) return; const letter = userLettersData[key]; if (!letter || letter.ownerUid !== currentUser.uid) { alert(translate("alert_delete_own_only")); return; } if (!confirm(translate('confirm_delete_letter'))) return; showLoading(true); const updates = {}; updates[`users/${currentUser.uid}/letters/${key}`] = null; updates[`user_bookmarks/${currentUser.uid}/${key}`] = null; if (letter.privacy === 'public') updates[`public_letters/${key}`] = null; database.ref().update(updates).then(() => { delete userLettersData[key]; delete allPublicLettersData[key]; if(currentView==='profile-section') displayLetters(); if(currentView==='feed-section') displayFeedContent(); if(bookmarksContent&&!bookmarksContent.classList.contains('hidden')) displayBookmarks(); }).catch(err => alert(`${translate('error_delete_letter')} ${mapFirebaseError(err.code)}`)).finally(() => showLoading(false)); }
+
+            // --- Other Profile View (অন্য প্রোফাইল দেখা - উন্নত এরর লগিং সহ) ---
+             async function viewUserProfile(uid) {
+                if (!uid || !database || !currentUser) return;
+                const comingFromView = currentView;
+                if (uid === currentUser.uid) {
+                    setActiveView('profile-section');
+                    setActiveProfileTab('myletters');
+                    return;
+                }
+                console.log("প্রোফাইল দেখা হচ্ছে:", uid);
+                setActiveView('profile-view-section');
+                showLoading(true);
+                viewingProfileUid = uid;
+
+                history.pushState({ previousView: comingFromView }, '');
+
+                if(otherProfileViewName)otherProfileViewName.textContent=translate('loading_profile');
+                if(otherProfileViewEmail)otherProfileViewEmail.textContent='';
+                const otherFollowerCountSpan = otherFollowerCountDiv?.querySelector('span:not([data-translate-key])');
+                const otherFollowingCountSpan = otherFollowingCountDiv?.querySelector('span:not([data-translate-key])');
+                if(otherFollowerCountSpan)otherFollowerCountSpan.textContent='?';
+                if(otherFollowingCountSpan)otherFollowingCountSpan.textContent='?';
+                if(otherProfileLettersList)otherProfileLettersList.innerHTML=getPlaceholder('loading_letters');
+                if(profileActionArea)profileActionArea.innerHTML='';
+
+                try {
+                    console.log(`${uid} এর জন্য প্রোফাইল আনা হচ্ছে...`);
+                    const profile = await getUserProfile(uid);
+                    console.log(`${uid} এর জন্য প্রোফাইল আনা হয়েছে:`, profile);
+                    if(otherProfileViewName)otherProfileViewName.textContent=profile.name;
+                    if(otherProfileViewEmail)otherProfileViewEmail.textContent=profile.email;
+
+                    console.log(`${uid} এর জন্য ফলো ডেটা আনা হচ্ছে...`);
+                    const [follsSnapshot, follingSnapshot, letsSnapshot] = await Promise.all([
+                        database.ref(`followers/${uid}`).get().catch(err => { console.error(`${uid} এর ফলোয়ার আনতে ত্রুটি:`, err); throw err; }),
+                        database.ref(`following/${uid}`).get().catch(err => { console.error(`${uid} এর ফলোয়িং আনতে ত্রুটি:`, err); throw err; }),
+                        database.ref(`users/${uid}/letters`).orderByChild('privacy').equalTo('public').get().catch(err => { console.error(`${uid} এর পাবলিক চিঠি আনতে ত্রুটি:`, err); throw err; })
+                    ]);
+                    console.log(`${uid} এর জন্য ফলো/চিঠি ডেটা আনা হয়েছে`);
+
+                    if(otherFollowerCountSpan)otherFollowerCountSpan.textContent = Object.keys(follsSnapshot.val()||{}).filter(id=>follsSnapshot.val()[id]===true).length;
+                    if(otherFollowingCountSpan)otherFollowingCountSpan.textContent = Object.keys(follingSnapshot.val()||{}).filter(id=>follingSnapshot.val()[id]===true).length;
+
+                    setupOtherProfileView(uid);
+
+                    const pubLets=[];
+                    if(letsSnapshot.exists()) {
+                        letsSnapshot.forEach(s=>{
+                            const l=s.val();
+                            l.id=s.key;
+                            l.ownerUid=uid;
+                            l.likes=l.likes||{};
+                            l.comments=l.comments||{};
+                            pubLets.push(l);
+                        });
+                    }
+
+                    if(pubLets.length>0){
+                        pubLets.sort((a,b)=>(b.timestamp||0)-(a.timestamp||0));
+                        if(otherProfileLettersList)otherProfileLettersList.innerHTML='';
+                        const frag=document.createDocumentFragment();
+                        const els=await Promise.all(pubLets.map(l=>createLetterElement(l, true, false)));
+                        els.filter(Boolean).forEach(el=>frag.appendChild(el));
+                        if(otherProfileLettersList)otherProfileLettersList.appendChild(frag);
+                    } else {
+                        if(otherProfileLettersList) otherProfileLettersList.innerHTML = getPlaceholder('placeholder_other_no_public');
+                    }
+                } catch (error) {
+                    console.error("প্রোফাইল ভিউ প্রধান ত্রুটি অবজেক্ট:", error);
+                    console.error("প্রোফাইল ভিউ প্রধান ত্রুটি কোড:", error?.code);
+                    console.error("প্রোফাইল ভিউ প্রধান ত্রুটি বার্তা:", error?.message);
+
+                    let errorMsg = translate('error_profile_view');
+                    if (error?.code === 'PERMISSION_DENIED') {
+                         errorMsg += ` (${translate('permission_denied')} - Firebase Rules চেক করুন)`;
+                    } else if (error?.message) {
+                         errorMsg += ` (${error.message})`;
+                    }
+
+                    if(otherProfileLettersList) otherProfileLettersList.innerHTML = `<p class="notice-text error">${errorMsg}</p>`;
+                     if(otherProfileViewName)otherProfileViewName.textContent=translate('error_generic');
+                     if(otherProfileViewEmail)otherProfileViewEmail.textContent='';
+                     if(otherFollowerCountSpan)otherFollowerCountSpan.textContent='-';
+                     if(otherFollowingCountSpan)otherFollowingCountSpan.textContent='-';
+                     if(profileActionArea)profileActionArea.innerHTML='';
+                } finally {
+                    showLoading(false);
+                }
+            }
+            function setupOtherProfileView(targetUid) {
+                if (!profileActionArea || !currentUser || currentUser.uid === targetUid) {
+                     if(profileActionArea) profileActionArea.innerHTML = '';
+                     return;
+                 }
+                 const isFollowing = userFollowingData[targetUid] === true;
+                 const buttonText = translate(isFollowing ? 'button_unfollow' : 'button_follow');
+                 profileActionArea.innerHTML = `<button id="other-profile-follow-btn" class="profile-follow-btn ${isFollowing ? 'following':''}" >${buttonText}</button>`;
+                 const btn = getEl('other-profile-follow-btn');
+                 if(btn) btn.onclick=(e)=>{e.stopPropagation(); handleFollow(targetUid, e.target);};
+            }
+
+
+            // --- Letter Viewer (চিঠি ভিউয়ার) ---
+            async function showLetterInViewer(letterData, isShared = false) { if (!letterViewerModal || !letterData || !letterData.ownerUid) return; const sender = await getUserProfile(letterData.ownerUid); if(letterViewerContent) letterViewerContent.innerHTML = sanitizeHTML(letterData.content); if(letterViewerSender) letterViewerSender.textContent = sender.name; if(letterViewerTime) letterViewerTime.textContent = formatTimestamp(letterData.timestamp); if(letterViewerActions) { letterViewerActions.innerHTML = ''; if (isShared && letterData.ownerUid !== currentUser?.uid) { const replyBtn = document.createElement('button'); replyBtn.textContent = translate('button_reply_to_sender'); replyBtn.onclick = () => { console.log('রিপ্লাই করা হচ্ছে:', letterData.ownerUid); hideModal(letterViewerModal); setActiveView('write-section'); if(letterContent) { letterContent.value = translate('dear_placeholder', {name: sender.name}); letterContent.focus(); const friendsRadio = getEl('privacy-friends'); if (friendsRadio) { friendsRadio.checked = true; handlePrivacyChange(); selectedFriendsForSending.clear(); selectedFriendsForSending.add(letterData.ownerUid); updateSelectedFriendCount(); updateFriendSelectModalOptions(); modalSelectedCountSpan.textContent = selectedFriendsForSending.size; } } }; letterViewerActions.appendChild(replyBtn); } } showModal(letterViewerModal); }
+            async function openInboxLetter(inboxId, letterId, senderUid, isSenderCopy) { if(!letterId || !senderUid) return; const letter = await getFullLetterData(letterId, senderUid, isSenderCopy ? 'users' : 'shared'); if(letter){ showLetterInViewer(letter, !isSenderCopy); if (!isSenderCopy && currentUser && userInboxData[inboxId] && !userInboxData[inboxId].read) { database.ref(`inboxes/${currentUser.uid}/${inboxId}/read`).set(true).catch(()=>{}); } } else { alert(translate("alert_letter_not_found")); } }
+
+             // --- URL থেকে চিঠি দেখানোর ফাংশন ---
+             async function showLetterFromUrl(letterIdToView) {
+                if (!letterIdToView || !database) {
+                    console.warn("URL থেকে চিঠি দেখানোর জন্য চিঠি আইডি বা ডেটাবেস নেই।");
+                    return false;
+                }
+                showLoading(true);
+                console.log(`URL থেকে চিঠি দেখানোর চেষ্টা: ${letterIdToView}`);
+
+                let letterData = null;
+                let ownerUid = null;
+                let letterType = 'users';
+
+                try {
+                    const publicLetterRef = database.ref(`public_letters/${letterIdToView}`);
+                    const publicSnapshot = await publicLetterRef.get();
+                    if (publicSnapshot.exists()) {
+                        ownerUid = publicSnapshot.val().ownerUid;
+                        letterType = 'users';
+                        console.log(`Letter ${letterIdToView} public_letters index এ পাওয়া গেছে। মালিক: ${ownerUid}`);
+                    }
+                } catch (e) { console.warn(`${letterIdToView} এর জন্য public_letters চেক করতে ত্রুটি:`, e); }
+
+                if (!ownerUid && currentUser) {
+                    const inboxEntry = Object.values(userInboxData).find(item => item.letterId === letterIdToView && item.senderUid);
+                    if (inboxEntry) {
+                        ownerUid = inboxEntry.senderUid;
+                        letterType = 'shared';
+                        console.log(`চিঠি ${letterIdToView} ইনবক্সের মাধ্যমে পাওয়া গেছে। প্রেরক/মালিক: ${ownerUid}`);
+                    }
+                }
+
+                if (!ownerUid && currentUser && userLettersData[letterIdToView]) {
+                    if (userLettersData[letterIdToView].ownerUid === currentUser.uid) {
+                        ownerUid = currentUser.uid;
+                        letterType = 'users';
+                        console.log(`চিঠি ${letterIdToView} বর্তমান ইউজারের নিজের চিঠি।`);
+                    }
+                }
+
+                if (!ownerUid) {
+                    console.warn(`URL থেকে ${letterIdToView} চিঠির মালিক নির্ধারণ করা যায়নি।`);
+                    alert(translate('alert_letter_not_found'));
+                    showLoading(false);
+                    return false;
+                }
+
+                letterData = await getFullLetterData(letterIdToView, ownerUid, letterType);
+
+                if (letterData) {
+                    console.log("URL এর জন্য আনা চিঠির ডেটা:", letterData);
+                    if (letterType === 'users' && letterData.privacy !== 'private' && (!currentUser || letterData.ownerUid !== currentUser.uid)) {
+                        await attachCommentListener(letterIdToView, letterData.ownerUid, 'users');
+                    }
+                    await showLetterInViewer(letterData, letterType === 'shared');
+                    showLoading(false);
+                    return true;
+                } else {
+                    alert(translate('alert_letter_not_found'));
+                    showLoading(false);
+                    return false;
+                }
+            }
+
+            // --- Invite Action (আমন্ত্রণ জানানো) ---
+            inboxInviteBtn?.addEventListener('click', () => { const url=window.location.origin+window.location.pathname; const data={title:translate('share_title_invite'), text:translate('share_text_invite'), url}; if(navigator.share){navigator.share(data).catch(()=>{});}else{navigator.clipboard.writeText(url).then(()=>alert(translate('link_copied'))).catch(()=>alert(translate('error_copying'))); } });
+
+             // --- Search Logic (অনুসন্ধান লজিক - 'name' ফিল্ড ব্যবহার করে, কেস-সেনসিটিভ) ---
+            userSearchInput?.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.trim();
+                clearTimeout(searchTimeoutId);
+                searchTimeoutId = setTimeout(() => {
+                    performUserSearch(searchTerm);
+                }, 300);
+            });
+
+            async function performUserSearch(term) {
+                 if (!database || !currentUser || !searchResultsList) return;
+                 const searchTerm = term;
+
+                 if (searchTerm.length < 2) {
+                     searchResultsList.innerHTML = getPlaceholder('placeholder_search_prompt');
+                     return;
+                 }
+
+                 console.log("অনুসন্ধান করা হচ্ছে (কেস-সেনসিটিভ):", searchTerm);
+                 searchResultsList.innerHTML = getPlaceholder('loading');
+
+                 try {
+                     const usersRef = database.ref('user_profiles');
+                     const query = usersRef.orderByChild('name')
+                                         .startAt(searchTerm)
+                                         .endAt(searchTerm + '\uf8ff')
+                                         .limitToFirst(15);
+
+                     const snapshot = await query.once('value');
+                     console.log("অনুসন্ধানের স্ন্যাপশট:", snapshot.val());
+
+                     const results = [];
+                     if (snapshot.exists()) {
+                         snapshot.forEach(childSnapshot => {
+                             const userData = childSnapshot.val();
+                             if (userData && userData.name) {
+                                 userData.uid = childSnapshot.key;
+                                 results.push(userData);
+                             } else {
+                                console.warn("অনুসন্ধানের ফলাফলে নাম অনুপস্থিত:", childSnapshot.key, userData);
+                             }
+                         });
+                     }
+                     console.log("প্রসেস করা অনুসন্ধানের ফলাফল:", results);
+                     displaySearchResults(results);
+
+                 } catch (error) {
+                     console.error("ইউজার অনুসন্ধান ত্রুটি:", error);
+                     console.error("ইউজার অনুসন্ধান ত্রুটি কোড:", error?.code);
+                     console.error("ইউজার অনুসন্ধান ত্রুটি বার্তা:", error?.message);
+                     if (error.code === 'PERMISSION_DENIED') {
+                         searchResultsList.innerHTML = `<p class="notice-text error">${translate('permission_denied')} ${translate('error_search_failed')}</p><p class="notice-text error" style="font-size: 0.8em;">(Firebase rules-এ /user_profiles-এর '.read' এবং '.indexOn: "name"' চেক করুন)</p>`;
+                     } else {
+                         searchResultsList.innerHTML = getPlaceholder('error_search_failed');
+                     }
+                 }
+            }
+
+            // Helper function to load an ad into a container
+            function loadAdIntoContainer(adContainerElement) {
+                if (!adContainerElement) return;
+                adContainerElement.innerHTML = ''; // Clear previous
+
+                const optionsScript = document.createElement('script');
+                optionsScript.type = 'text/javascript';
+                optionsScript.textContent = `var atOptions = ${JSON.stringify(AD_OPTIONS)};`;
+                adContainerElement.appendChild(optionsScript);
+
+                const invokeScript = document.createElement('script');
+                invokeScript.type = 'text/javascript';
+                invokeScript.src = AD_INVOKE_JS_SRC;
+                invokeScript.async = true;
+                invokeScript.onload = () => console.log("বিজ্ঞাপন ইনভোক স্ক্রিপ্ট লোড হয়েছে:", AD_INVOKE_JS_SRC);
+                invokeScript.onerror = () => {
+                    console.error("বিজ্ঞাপন ইনভোক স্ক্রিপ্ট লোড করতে ত্রুটি:", AD_INVOKE_JS_SRC);
+                    adContainerElement.innerHTML = '<p style="color:red; font-size:0.8em;">Ad could not be loaded.</p>';
+                };
+                adContainerElement.appendChild(invokeScript);
+            }
+
+
+             // --- Add UID Logic (ইউআইডি দিয়ে যোগ করার লজিক) ---
+            function setAddUidMessage(messageKey, type = 'info', replacements = {}) {
+                if (!addUidMessage) return;
+                if (!messageKey) {
+                    addUidMessage.textContent = '';
+                    addUidMessage.className = '';
+                    return;
+                }
+                addUidMessage.textContent = translate(messageKey, replacements);
+                addUidMessage.className = type;
+            }
+
+            addUidButton?.addEventListener('click', async () => {
+                if (!addUidInput || !currentUser || !database) return;
+                const targetUid = addUidInput.value.trim();
+
+                setAddUidMessage('');
+
+                if (!targetUid) { setAddUidMessage('alert_uid_empty', 'error'); return; }
+                if (targetUid === currentUser.uid) { setAddUidMessage('alert_cannot_follow_self', 'error'); return; }
+                if (userFollowingData[targetUid]) { setAddUidMessage('alert_already_following', 'error'); return; }
+
+                addUidButton.disabled = true;
+                addUidInput.disabled = true;
+                setAddUidMessage('alert_adding_user', 'info');
+
+                try {
+                    const profileRef = database.ref(`user_profiles/${targetUid}`);
+                    const snapshot = await profileRef.once('value');
+
+                    if (!snapshot.exists()) {
+                        setAddUidMessage('alert_uid_user_not_found', 'error');
+                         if(addUidInput) addUidInput.disabled = false;
+                         if(addUidButton) addUidButton.disabled = false;
+                        return;
+                    }
+
+                    handleFollow(targetUid, addUidButton);
+                    setAddUidMessage('alert_follow_successful', 'success');
+                    addUidInput.value = '';
+
+                } catch (error) {
+                    console.error("ইউআইডি দিয়ে ইউজার যোগ করতে ত্রুটি:", error);
+                    setAddUidMessage('alert_follow_failed', 'error');
+                     if(addUidInput) addUidInput.disabled = false;
+                     if(addUidButton) addUidButton.disabled = false;
+                } finally {
+                     if (!addUidMessage.classList.contains('error')) {
+                         setTimeout(() => {
+                             if(addUidInput) addUidInput.disabled = false;
+                         }, 600);
+                     }
+                }
+            });
+
+
+            // --- Initial Setup (প্রাথমিক সেটআপ) ---
+            function setInitialPlaceholders() {
+                if(getEl('letter-archive')) getEl('letter-archive').innerHTML=getPlaceholder('placeholder_no_letters');
+                if(getEl('feed-content')) getEl('feed-content').innerHTML=getPlaceholder('placeholder_no_public_letters');
+                if(getEl('bookmark-archive')) getEl('bookmark-archive').innerHTML=getPlaceholder('placeholder_no_bookmarks');
+                if(getEl('following-list')) getEl('following-list').innerHTML=getPlaceholder('placeholder_not_following');
+                if(getEl('inbox-list')) getEl('inbox-list').innerHTML=getPlaceholder('placeholder_inbox_empty');
+                if(getEl('other-profile-letters-list')) getEl('other-profile-letters-list').innerHTML='';
+                if(getEl('friend-select-list')) getEl('friend-select-list').innerHTML = getPlaceholder('placeholder_follow_to_select');
+                if(getEl('leaderboard-list')) getEl('leaderboard-list').innerHTML = getPlaceholder('placeholder_leaderboard_empty');
+                if(getEl('search-results-list')) getEl('search-results-list').innerHTML = getPlaceholder('placeholder_search_prompt');
+                if(getEl('user-search-input')) getEl('user-search-input').value = '';
+                if(getEl('add-uid-input')) getEl('add-uid-input').value = '';
+                if(getEl('add-uid-message')) getEl('add-uid-message').textContent = '';
+                if(getEl('user-uid-display')) getEl('user-uid-display').textContent = '';
+            }
+
+             // লোডের সময় ভাষা এবং স্থানধারকগুলি শুরু করুন
+             setLanguage(currentLanguage);
+             setInitialPlaceholders();
+             showLoading(true); // Auth state will hide it
+
+            console.log("চিঠি অ্যাপ v3.9.16 স্ক্রিপ্ট লোড সম্পন্ন।");
+
+        }); // End DOMContentLoaded listener
+        // ==================== JavaScript কোড শেষ ====================
+  </script>
+ </body>
+</html>
